@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fc215733ceebdc44b970b4e0b729cf8, type: 3}
-  m_Name: WizzadTowerData
+  m_Name: MageTowerData
   m_EditorClassIdentifier: 
-  lv1tower: {fileID: 0}
-  lv2tower: {fileID: 0}
-  lv3tower: {fileID: 0}
-  lv4tower: {fileID: 0}
-  buildTime: 0
-  buildCost: 0
-  sellCost: 0
+  towers:
+  - tower: {fileID: 2622684566205426778, guid: 32f7fd115c3a1dc448cabd8ad7bc3cfe, type: 3}
+    damage: 5
+    delay: 3
+    range: 50
+    buildTime: 5
+    buildCost: 10
+    sellCost: 150

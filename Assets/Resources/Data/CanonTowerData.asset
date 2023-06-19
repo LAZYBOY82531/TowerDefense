@@ -19,4 +19,4 @@ MonoBehaviour:
     range: 50
     buildTime: 5
     buildCost: 200
-    sellCost: 15
+    sellCost: 100

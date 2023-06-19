@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 8182888613378443674}
   - component: {fileID: 8182888613378443675}
   m_Layer: 5
-  m_Name: Wizzad
+  m_Name: Mage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
