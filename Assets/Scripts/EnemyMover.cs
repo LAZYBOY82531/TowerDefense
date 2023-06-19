@@ -68,7 +68,6 @@ public class EnemyMover : MonoBehaviour
                     yield break;
                 }
             }
-
             yield return new WaitForSeconds(0.2f);
         }
     }
@@ -82,7 +81,8 @@ public class EnemyMover : MonoBehaviour
 
     private void ToNextPoint()
     {
-        agent.destination = wayPoints[wayPointIndex].position;
+        if (agent.enabled)
+            agent.destination = wayPoints[wayPointIndex].position;
     }
 
 

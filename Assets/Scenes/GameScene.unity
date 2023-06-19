@@ -11969,7 +11969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b0eb0180feb4a448aaf5d28f5633a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 10
+  waitTime: 5
   Wave1:
     m_PersistentCalls:
       m_Calls:
@@ -12014,7 +12014,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 372078886}
         m_TargetAssemblyTypeName: SpawnPoint, Assembly-CSharp
-        m_MethodName: StartWave
+        m_MethodName: StartWaveFunction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

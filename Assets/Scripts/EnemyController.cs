@@ -8,15 +8,22 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] int hp = 5;
     [SerializeField] int fullhp;
+    [SerializeField] int GiveCoin;
     [SerializeField] UnityEvent resetPosition;
     public int HP { get { return hp; } private set { hp = value; OnChangedHP?.Invoke(hp); } }
     public UnityEvent<int> OnChangedHP;
     private Animator anim;
+    private IEnumerator DieEnumerator;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         fullhp = hp;
+    }
+
+    private void OnEnable()
+    {
+        DieEnumerator = Die();
     }
 
     public void FullHP()
@@ -33,11 +40,18 @@ public class EnemyController : MonoBehaviour
         if(hp <= 0)
         {
             OnDied?.Invoke();
-            GameManager.Data.Coin += 5;
-            anim.SetTrigger("Die");
-            this.gameObject.SetActive(false);
-            FullHP();
-            resetPosition?.Invoke();
+            GameManager.Data.Coin += GiveCoin;
+            StartCoroutine(Die());
         }
+    }
+
+    IEnumerator Die()
+    {
+        anim.SetTrigger("Die");
+        yield return new WaitForSeconds(1.5f);
+        this.gameObject.SetActive(false);
+        FullHP();
+        resetPosition?.Invoke();
+        yield return null;
     }
 }

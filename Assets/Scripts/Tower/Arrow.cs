@@ -26,10 +26,6 @@ public class Arrow : MonoBehaviour
         {
             if (enemy != null)
                 targetPoint = enemy.transform.position;
-
-            /*Vector3 vector = enemy.transform.position - transform.position;
-            Vector3 dir = vector.normalized;
-            transform.Translate(dir * speed * Time.deltaTime, Space.World);*/
             transform.LookAt(targetPoint);
             transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
 
@@ -37,7 +33,7 @@ public class Arrow : MonoBehaviour
             {
                 if(enemy != null)
                     Attack(enemy);
-                GameManager.Resource.Destroy(gameObject);
+                GameManager.Pool.Release(this);
                 yield break;
             }
 

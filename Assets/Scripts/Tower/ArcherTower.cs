@@ -44,7 +44,7 @@ public class ArcherTower : Tower
 
     public void Attack(EnemyController enemy)
     {
-        Arrow arrow = GameManager.Resource.Instantiate<Arrow>("Tower/Arrow", arrowPoint.position, arrowPoint.rotation);
+        Arrow arrow = GameManager.Pool.Get<Arrow>(GameManager.Resource.Load<Arrow>("Tower/Arrow"), arrowPoint.position, arrowPoint.rotation);
         arrow.SetTarget(enemy);
         arrow.SetDamage(data.towers[0].damage);
     }

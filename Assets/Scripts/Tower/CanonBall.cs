@@ -59,6 +59,6 @@ public class CanonBall : MonoBehaviour
         yield return null;
 
         Explosion();
-        GameManager.Resource.Destroy(gameObject);
+        GameManager.Pool.Release(this);
     }
 }

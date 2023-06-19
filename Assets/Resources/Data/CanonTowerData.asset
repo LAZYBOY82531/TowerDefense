@@ -18,5 +18,5 @@ MonoBehaviour:
     delay: 5
     range: 50
     buildTime: 5
-    buildCost: 300
+    buildCost: 200
     sellCost: 15

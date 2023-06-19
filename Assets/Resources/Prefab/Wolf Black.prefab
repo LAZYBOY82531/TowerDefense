@@ -1549,9 +1549,9 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811715708561768}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.01
   m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1591,6 +1591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 5
   fullhp: 0
+  GiveCoin: 10
   resetPosition:
     m_PersistentCalls:
       m_Calls:

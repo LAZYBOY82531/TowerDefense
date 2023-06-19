@@ -41,7 +41,7 @@ public class CanonTower : Tower
 
     public void Attack(EnemyController enemy)
     {
-        CanonBall canon = GameManager.Resource.Instantiate<CanonBall>("Tower/CanonBall", canonPoint.position, canonPoint.rotation);
+        CanonBall canon = GameManager.Pool.Get<CanonBall>(GameManager.Resource.Load<CanonBall>("Tower/CanonBall"), canonPoint.position, canonPoint.rotation);
         canon.SetTarget(enemy);
         canon.SetDamage(data.towers[0].damage);
     }
