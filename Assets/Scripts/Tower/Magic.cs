@@ -1,23 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Magic : MonoBehaviour
 {
-    [SerializeField] float speed;
     [SerializeField] float range;
-    public Collider[] colliders1;
-    public EnemyController enemy1;
+    private List<EnemyController> enemys;
     private EnemyController enemy;
     private int damage;
-    private Vector3 targetPoint;
+    private Vector3 targetPoint1;
+    private Vector3 targetPoint2;
+    private Vector3 targetPoint3;
+    private Vector3 targetPoint4;
 
 
     public void SetTarget(EnemyController enemy)
     {
+        enemys.Add(enemy);
         this.enemy = enemy;
-        targetPoint = enemy.transform.position;
-        StartCoroutine(MagicRoutine());
+        Target();
+        DamageEnemy();
     }
 
     public void SetDamage(int damage)
@@ -25,115 +28,70 @@ public class Magic : MonoBehaviour
         this.damage = damage;
     }
 
-    IEnumerator MagicRoutine()
+    public void Target()
     {
-        while (true)
+        int repeat = 1;
+        while (repeat < 4)
         {
-            if (enemy != null)
-                targetPoint = enemy.transform.position;
-            transform.LookAt(targetPoint);
-            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-
-            if (Vector3.Distance(targetPoint, transform.position) < 0.1f)
+            targetPoint1 = enemy.transform.position;
+            Collider[] colliders1 = Physics.OverlapSphere(targetPoint1, range, LayerMask.GetMask("Enemy"));
+            if (colliders1.Length >= 2)
             {
-                if (enemy != null)
-                    enemy?.TakeHit(damage);
-                colliders1 = Physics.OverlapSphere(transform.position, range, LayerMask.GetMask("Enemy"));
-                if (colliders1.Length > 1)
+                foreach (Collider collider in colliders1)
                 {
-                    enemy1 = colliders1[1].GetComponent<EnemyController>();
-                    if (enemy1 != null)
-                        targetPoint = enemy1.transform.position;
-                    transform.LookAt(targetPoint);
-                    transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-                    if (Vector3.Distance(targetPoint, transform.position) < 0.1f)
+                    EnemyController isenemy = collider.GetComponent<EnemyController>();
+                    if (isenemy != enemy)
                     {
-                        if (enemy1 != null)
-                            enemy1?.TakeHit(damage);
+                        enemys.Add(isenemy);
+                        targetPoint2 = isenemy.transform.position;
+                        repeat++;
                     }
-                }
-                GameManager.Pool.Release(this);
-                yield break;
-            }
-
-            yield return null;
-        }
-    }
-
-    private void Gggggggg()
-    {
-        colliders1 = Physics.OverlapSphere(transform.position, range, LayerMask.GetMask("Enemy"));
-        if (colliders1.Length > 1)
-        {
-            enemy1 = colliders1[1].GetComponent<EnemyController>();
-            if (enemy1 != null)
-                targetPoint = enemy1.transform.position;
-            transform.LookAt(targetPoint);
-            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-            if (Vector3.Distance(targetPoint, transform.position) < 0.1f)
-            {
-                if (enemy1 != null)
-                    enemy1?.TakeHit(damage);
-            }
-        }
-    }
-    IEnumerator MagicRoutine22()
-    {
-        while (true)
-        {
-            if (enemy != null)
-                targetPoint = enemy.transform.position;
-            transform.LookAt(targetPoint);
-            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-            if (Vector3.Distance(targetPoint, transform.position) < 0.1f)
-            {
-                if (enemy != null)
-                    enemy?.TakeHit(damage);
-                yield return new WaitForSeconds(0.01f);
-                Collider[] colliders1 = Physics.OverlapSphere(transform.position, range, LayerMask.GetMask("Enemy"));
-                if (colliders1.Length != 0)
-                {
-                    EnemyController enemy1 = colliders1[0].GetComponent<EnemyController>();
-                    if (enemy1 != null)
-                        targetPoint = enemy1.transform.position;
-                    transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-                    if (Vector3.Distance(targetPoint, transform.position) < 0.1f)
+                    else
                     {
-                        if (enemy1 != null)
-                            enemy1?.TakeHit(damage);
-                        yield return new WaitForSeconds(0.01f);
-                        Collider[] colliders2 = Physics.OverlapSphere(transform.position, range, LayerMask.GetMask("Enemy"));
-                        if (colliders2.Length != 0)
+                        GameManager.Pool.Release(gameObject);
+                    }
+                    if (repeat == 2)
+                    {
+                        Collider[] colliders2 = Physics.OverlapSphere(targetPoint1, range, LayerMask.GetMask("Enemy"));
+                        if (colliders2.Length >= 2)
                         {
-                            EnemyController enemy2 = colliders2[0].GetComponent<EnemyController>();
-                            if (enemy2 != null)
-                                targetPoint = enemy2.transform.position;
-                            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-                            if (Vector3.Distance(targetPoint, transform.position) < 0.1f)
+                            foreach (Collider collider2 in colliders2)
                             {
-                                if (enemy2 != null)
-                                    enemy2?.TakeHit(damage);
-                                yield return new WaitForSeconds(0.01f);
-                                Collider[] colliders3 = Physics.OverlapSphere(transform.position, range, LayerMask.GetMask("Enemy"));
-                                if (colliders3.Length != 0)
+                                EnemyController isenemy2 = collider2.GetComponent<EnemyController>();
+                                if (isenemy2 != enemy)
                                 {
-                                    EnemyController enemy3 = colliders3[0].GetComponent<EnemyController>();
-                                    if (enemy3 != null)
-                                        targetPoint = enemy3.transform.position;
-                                    transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-                                    if (Vector3.Distance(targetPoint, transform.position) < 0.1f)
-                                    {
-                                        if (enemy3 != null)
-                                            enemy3?.TakeHit(damage);
-                                    }
+                                    enemys.Add(isenemy2);
+                                    targetPoint3 = isenemy2.transform.position;
+                                    repeat++;
+                                }
+                                else
+                                {
+                                    GameManager.Pool.Release(gameObject);
+                                }
+                                if (repeat == 3)
+                                {
                                 }
                             }
+                        }
+                        else
+                        {
+                            GameManager.Pool.Release(gameObject);
                         }
                     }
                 }
             }
-            GameManager.Pool.Release(this);
-            yield break;
+            else
+            {
+                GameManager.Pool.Release(gameObject);
+            }
+        }
+    }
+
+    public void DamageEnemy()
+    {
+        foreach(EnemyController enemy in enemys)
+        {
+            enemy.TakeHit(damage);
         }
     }
 }

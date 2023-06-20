@@ -7,6 +7,7 @@ public class ArcherTower : Tower
 {
     [SerializeField] Transform archer;
     [SerializeField] Transform arrowPoint;
+    [SerializeField] int LV = 1;
 
     protected override void Awake()
     {
@@ -33,7 +34,7 @@ public class ArcherTower : Tower
             if (enemyList.Count > 0)
             {
                 Attack(enemyList[0]);
-                yield return new WaitForSeconds(data.towers[0].delay);
+                yield return new WaitForSeconds(data.towers[LV].delay);
             }
             else
             {
@@ -46,7 +47,7 @@ public class ArcherTower : Tower
     {
         Arrow arrow = GameManager.Pool.Get<Arrow>(GameManager.Resource.Load<Arrow>("Tower/Arrow"), arrowPoint.position, arrowPoint.rotation);
         arrow.SetTarget(enemy);
-        arrow.SetDamage(data.towers[0].damage);
+        arrow.SetDamage(data.towers[LV].damage);
     }
 
     IEnumerator LookRoutine()

@@ -15,7 +15,7 @@ MonoBehaviour:
   towers:
   - tower: {fileID: 2622684566205426778, guid: 32f7fd115c3a1dc448cabd8ad7bc3cfe, type: 3}
     damage: 5
-    delay: 3
+    delay: 5
     range: 50
     buildTime: 5
     buildCost: 10

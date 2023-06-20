@@ -41,7 +41,7 @@ public class EnemyController : MonoBehaviour
         {
             OnDied?.Invoke();
             GameManager.Data.Coin += GiveCoin;
-            StartCoroutine(Die());
+            StartCoroutine(DieEnumerator);
         }
     }
 
