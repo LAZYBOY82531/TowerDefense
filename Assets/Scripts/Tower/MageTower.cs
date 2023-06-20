@@ -5,17 +5,19 @@ using UnityEngine;
 public class MageTower : Tower
 {
     [SerializeField] Transform magicPoint;
-    [SerializeField] float range;
+    [SerializeField] float magicRange;
     public List<EnemyController> enemys;
     private Vector3 targetPoint3;
     private Vector3 targetPoint2;
     private Vector3 targetPoint;
+
 
     protected override void Awake()
     {
         base.Awake();
 
         data = GameManager.Resource.Load<TowerData>("Data/MageTowerData");
+        range = data.towers[towerLV].range;
     }
 
     private void OnEnable()
@@ -36,7 +38,7 @@ public class MageTower : Tower
             {
                 GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Tower/Thunder"), magicPoint.position, magicPoint.rotation);
                 Attack(enemyList[0]);
-                yield return new WaitForSeconds(data.towers[0].delay);
+                yield return new WaitForSeconds(data.towers[towerLV].delay);
                 enemys.Clear();
             }
             else
@@ -50,7 +52,7 @@ public class MageTower : Tower
     {
         targetPoint = enemy.transform.position;
         enemys?.Add(enemy);
-        Collider[] colliders1 = Physics.OverlapSphere(targetPoint, range, LayerMask.GetMask("Enemy"));
+        Collider[] colliders1 = Physics.OverlapSphere(targetPoint, magicRange, LayerMask.GetMask("Enemy"));
         if (colliders1.Length >= 2)
         {
             foreach (Collider collider in colliders1)
@@ -60,7 +62,7 @@ public class MageTower : Tower
                 {
                     enemys?.Add(isenemy);
                     targetPoint2 = isenemy.transform.position;
-                    Collider[] colliders2 = Physics.OverlapSphere(targetPoint2, range, LayerMask.GetMask("Enemy"));
+                    Collider[] colliders2 = Physics.OverlapSphere(targetPoint2, magicRange, LayerMask.GetMask("Enemy"));
                     if (colliders2.Length >= 2)
                     {
                         foreach (Collider collider2 in colliders2)
@@ -70,7 +72,7 @@ public class MageTower : Tower
                             {
                                 enemys?.Add(isenemy1);
                                 targetPoint3 = isenemy1.transform.position;
-                                Collider[] colliders3 = Physics.OverlapSphere(targetPoint3, range, LayerMask.GetMask("Enemy"));
+                                Collider[] colliders3 = Physics.OverlapSphere(targetPoint3, magicRange, LayerMask.GetMask("Enemy"));
                                 if (colliders2.Length >= 2)
                                 {
                                     foreach (Collider collider3 in colliders3)
@@ -95,7 +97,7 @@ public class MageTower : Tower
         {
             foreach(EnemyController e in enemys)
             {
-                e?.TakeHit(data.towers[0].damage);
+                e?.TakeHit(data.towers[towerLV].damage);
                 GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Tower/Thunder"), e.transform.position, e.transform.rotation);
             }
         }

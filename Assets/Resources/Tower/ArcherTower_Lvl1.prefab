@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b2c2372679cb844be807e308055559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower: {fileID: 0}
+  tower: {fileID: -7425683563072944661}
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 33148900250638496}
   - component: {fileID: 23402300862562940}
   - component: {fileID: -7425683563072944661}
+  - component: {fileID: 3149769597274005626}
   m_Layer: 0
   m_Name: ArcherTower_Lvl1
   m_TagString: Untagged
@@ -222,8 +223,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75478b8611b46a947a34d231e8d1cebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  range: 0
+  towerLV: 1
   archer: {fileID: 2576840276117652515}
   arrowPoint: {fileID: 843306878}
+--- !u!114 &3149769597274005626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376233406905130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb01b8d51f650c9409f3835ce76ceade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normal: {r: 1, g: 1, b: 1, a: 0}
+  onMouse: {r: 1, g: 0.41960785, b: 0.41960785, a: 0}
 --- !u!1 &755438858814648151
 GameObject:
   m_ObjectHideFlags: 0

@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b2c2372679cb844be807e308055559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower: {fileID: 0}
+  tower: {fileID: 2622684566205426778}
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
@@ -306,6 +306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0974e2e73b28e244d9ece70d921c2175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magicPoint: {fileID: 9118417185093116841}
   range: 10
+  magicPoint: {fileID: 9118417185093116841}
+  magicRange: 10
+  towerLV: 1
   enemys: []

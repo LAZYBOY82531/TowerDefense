@@ -5,12 +5,21 @@ using UnityEngine.Events;
 
 public class AttackRange : MonoBehaviour
 {
-    public Tower tower;
+    [SerializeField] Tower tower;
     public LayerMask enemyMask;
-
+    private CapsuleCollider collider;
     public UnityEvent<EnemyController> OnInRangeEnemy;
     public UnityEvent<EnemyController> OnOutRangeEnemy;
 
+    private void Awake()
+    {
+        collider = GetComponent<CapsuleCollider>();
+    }
+
+    private void Start()
+    {
+        collider.radius = tower.range;
+    }
 
     private void OnTriggerEnter(Collider other)
     {

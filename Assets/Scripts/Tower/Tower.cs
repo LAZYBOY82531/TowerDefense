@@ -5,6 +5,8 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     protected TowerData data;
+    public float range;
+    public int towerLV;
     protected List<EnemyController> enemyList;
 
     protected virtual void Awake()

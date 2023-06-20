@@ -11,6 +11,7 @@ public class CanonTower : Tower
         base.Awake();
 
         data = GameManager.Resource.Load<TowerData>("Data/CanonTowerData");
+        range = data.towers[towerLV].range;
     }
 
     private void OnEnable()
@@ -30,7 +31,7 @@ public class CanonTower : Tower
             if (enemyList.Count > 0)
             {
                 Attack(enemyList[0]);
-                yield return new WaitForSeconds(data.towers[0].delay);
+                yield return new WaitForSeconds(data.towers[towerLV].delay);
             }
             else
             {
@@ -43,6 +44,6 @@ public class CanonTower : Tower
     {
         CanonBall canon = GameManager.Pool.Get<CanonBall>(GameManager.Resource.Load<CanonBall>("Tower/CanonBall"), canonPoint.position, canonPoint.rotation);
         canon.SetTarget(enemy);
-        canon.SetDamage(data.towers[0].damage);
+        canon.SetDamage(data.towers[towerLV].damage);
     }
 }

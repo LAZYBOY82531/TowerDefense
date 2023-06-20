@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcherTowerCons : Tower
+public class CanonTowerCons : Tower
 {
     private void Awake()
     {
-        data = GameManager.Resource.Load<TowerData>("Data/ArcherTowerData");
-
+        data = GameManager.Resource.Load<TowerData>("Data/CanonTowerData");
     }
 
     private void Start()
     {
-        StartCoroutine(BuildArcherTower());
+        StartCoroutine(BuildCanonTower());
     }
 
-    IEnumerator BuildArcherTower()
+    IEnumerator BuildCanonTower()
     {
         yield return new WaitForSeconds(data.towers[towerLV].buildTime);
         GameManager.Resource.Destroy(gameObject);

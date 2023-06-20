@@ -13,10 +13,17 @@ MonoBehaviour:
   m_Name: MageTowerData
   m_EditorClassIdentifier: 
   towers:
+  - tower: {fileID: 3849149151979648660, guid: d8943264919864d4db9110e1e761ae14, type: 3}
+    damage: 0
+    delay: 0
+    range: 0
+    buildTime: 0
+    buildCost: 30
+    sellCost: 0
   - tower: {fileID: 2622684566205426778, guid: 32f7fd115c3a1dc448cabd8ad7bc3cfe, type: 3}
     damage: 5
     delay: 5
-    range: 50
-    buildTime: 5
-    buildCost: 10
-    sellCost: 150
+    range: 30
+    buildTime: 7
+    buildCost: 0
+    sellCost: 15
