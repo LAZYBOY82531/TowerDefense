@@ -36,10 +36,8 @@ public class MageTower : Tower
         {
             if (enemyList.Count > 0)
             {
-                GameObject thunderTrail = GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Tower/ThunderTrail"), magicPoint.position, magicPoint.rotation);
                 GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Tower/Shoot"), magicPoint.position, magicPoint.rotation);
                 Attack(enemyList[0]);
-                thunderTrail.transform.position = hitEnemy.transform.position;
                 yield return new WaitForSeconds(data.towers[element].delay);
                 enemys.Clear();
             }

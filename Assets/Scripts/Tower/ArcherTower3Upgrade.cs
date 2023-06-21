@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ArcherTowerUpgrade : Tower, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class ArcherTower3Upgrade : Tower, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Color normal;
     [SerializeField] Color onMouse;
@@ -17,7 +17,7 @@ public class ArcherTowerUpgrade : Tower, IPointerClickHandler, IPointerEnterHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        UpgardeArcherUI upgradeUI = GameManager.UI.ShowInGameUI<UpgardeArcherUI>("UI/UpgardeArcherCanvas");
+        ABUpgardeArcherUI upgradeUI = GameManager.UI.ShowInGameUI<ABUpgardeArcherUI>("UI/ABUpgardeArcherCanvas");
         upgradeUI.SetTarget(this.transform);
         upgradeUI.tower = this;
         upgradeUI.upgradeTowerLV = element;
@@ -33,10 +33,16 @@ public class ArcherTowerUpgrade : Tower, IPointerClickHandler, IPointerEnterHand
         render.material.color = normal;
     }
 
-    public void UpgradeTower(TowerData data)
+    public void UpgradeTowerA(TowerData data)
     {
         GameManager.Resource.Destroy(gameObject);
         GameManager.Resource.Instantiate(data.towers[element + 1].tower, transform.position, transform.rotation);
+    }
+
+    public void UpgradeTowerB(TowerData data)
+    {
+        GameManager.Resource.Destroy(gameObject);
+        GameManager.Resource.Instantiate(data.towers[element + 3].tower, transform.position, transform.rotation);
     }
 
     public void SellTower()

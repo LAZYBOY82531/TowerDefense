@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2837761771637621085}
   - component: {fileID: 2053503858096651947}
   - component: {fileID: 7145218743738862716}
-  - component: {fileID: 2734897908349936179}
+  - component: {fileID: -8474899217120905141}
   m_Layer: 0
   m_Name: ArcherTower_Lvl3
   m_TagString: Untagged
@@ -149,7 +149,7 @@ CapsuleCollider:
   m_Height: 12
   m_Direction: 1
   m_Center: {x: 0, y: 4, z: -0.13580084}
---- !u!114 &2734897908349936179
+--- !u!114 &-8474899217120905141
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,13 +158,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2823761107461293381}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb01b8d51f650c9409f3835ce76ceade, type: 3}
+  m_Script: {fileID: 11500000, guid: ce78e18cc6677f547a8f3170cffd19ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0
   element: 5
   normal: {r: 1, g: 1, b: 1, a: 0}
-  onMouse: {r: 1, g: 0.41960785, b: 0.41960785, a: 0}
+  onMouse: {r: 1, g: 0.41960788, b: 0.41960788, a: 0}
 --- !u!1 &5264649895113965407
 GameObject:
   m_ObjectHideFlags: 0

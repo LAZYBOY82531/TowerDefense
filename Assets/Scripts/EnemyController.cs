@@ -28,6 +28,11 @@ public class EnemyController : MonoBehaviour
         isdie = false;
     }
 
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     public void FullHP()
     {
         HP = fullhp;
