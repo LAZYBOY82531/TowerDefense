@@ -6,7 +6,7 @@ public class Tower : MonoBehaviour
 {
     protected TowerData data;
     public float range;
-    public int towerLV;
+    public int element;
     protected List<EnemyController> enemyList;
 
     protected virtual void Awake()

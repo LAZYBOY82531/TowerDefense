@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 10
+  element: 1
   magicPoint: {fileID: 9118417185093116841}
   magicRange: 10
-  towerLV: 1
   enemys: []

@@ -307,5 +307,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0
+  element: 1
   canonPoint: {fileID: 1108805418}
-  towerLV: 1

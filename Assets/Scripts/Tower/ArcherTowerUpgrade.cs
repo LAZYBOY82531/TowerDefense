@@ -34,17 +34,15 @@ public class ArcherTowerUpgrade : Tower, IPointerClickHandler, IPointerEnterHand
 
     public void UpgradeTower(TowerData data)
     {
-        if (GameManager.Data.UseCoin(data.towers[towerLV + 1].sellCost))
-        {
-            GameManager.Resource.Destroy(gameObject);
-            GameManager.Resource.Instantiate(data.towers[towerLV + 1].tower, transform.position, transform.rotation);
-        }
+        GameManager.Resource.Destroy(gameObject);
+        GameManager.Resource.Instantiate(data.towers[element + 1].tower, transform.position, transform.rotation);
     }
 
     public void SellTower()
     {
+        TowerData data = GameManager.Resource.Load<TowerData>("Data/ArcherTowerData");
         GameManager.Resource.Destroy(gameObject);
-        GameManager.Data.Coin += data.towers[towerLV].sellCost;
-        GameManager.Resource.Instantiate<GameObject>("PreFab/TB_BuildingPoint");
+        GameManager.Data.Coin += data.towers[element].sellCost;
+        GameManager.Resource.Instantiate<GameObject>("Prefab/TB_BuildingPoint", transform.position, transform.rotation);
     }
 }

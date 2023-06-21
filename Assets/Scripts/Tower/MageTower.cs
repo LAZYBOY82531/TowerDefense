@@ -17,7 +17,7 @@ public class MageTower : Tower
         base.Awake();
 
         data = GameManager.Resource.Load<TowerData>("Data/MageTowerData");
-        range = data.towers[towerLV].range;
+        range = data.towers[element].range;
     }
 
     private void OnEnable()
@@ -36,9 +36,11 @@ public class MageTower : Tower
         {
             if (enemyList.Count > 0)
             {
-                GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Tower/Thunder"), magicPoint.position, magicPoint.rotation);
+                GameObject thunderTrail = GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Tower/ThunderTrail"), magicPoint.position, magicPoint.rotation);
+                GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Tower/Shoot"), magicPoint.position, magicPoint.rotation);
                 Attack(enemyList[0]);
-                yield return new WaitForSeconds(data.towers[towerLV].delay);
+                thunderTrail.transform.position = hitEnemy.transform.position;
+                yield return new WaitForSeconds(data.towers[element].delay);
                 enemys.Clear();
             }
             else
@@ -95,10 +97,10 @@ public class MageTower : Tower
         }
         if (enemys.Count > 0)
         {
-            foreach(EnemyController e in enemys)
+            foreach(EnemyController hitEnemy in enemys)
             {
-                e?.TakeHit(data.towers[towerLV].damage);
-                GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Tower/Thunder"), e.transform.position, e.transform.rotation);
+                hitEnemy?.TakeHit(data.towers[element].damage);
+                GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Tower/Thunder"), hitEnemy.transform.position, hitEnemy.transform.rotation);
             }
         }
     }

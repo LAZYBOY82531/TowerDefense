@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Thunder : MonoBehaviour
+public class Effect : MonoBehaviour
 {
     private IEnumerator end;
     int range = 10;

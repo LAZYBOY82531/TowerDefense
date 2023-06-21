@@ -8,16 +8,20 @@ using UnityEngine.Events;
 public class MapData : MonoBehaviour
 {
     [SerializeField] int waitTime;
+    [SerializeField] int heart;
+    [SerializeField] int coin;
+    [SerializeField] int endwave;
     [SerializeField] UnityEvent Wave1;
     [SerializeField] UnityEvent Wave2;
     [SerializeField] UnityEvent Wave3;
     [SerializeField] UnityEvent Wave4;
 
+
     private void Awake()
     {
-        GameManager.Data.Heart = 20;
-        GameManager.Data.Coin = 200;
-        GameManager.Data.EndWave = 10;
+        GameManager.Data.Heart = heart;
+        GameManager.Data.Coin = coin;
+        GameManager.Data.EndWave = endwave;
     }
 
     private void Start()

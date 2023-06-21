@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     public UnityEvent<int> OnChangedHP;
     private Animator anim;
     private IEnumerator DieEnumerator;
+    private bool isdie = false;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class EnemyController : MonoBehaviour
     private void OnEnable()
     {
         DieEnumerator = Die();
+        isdie = false;
     }
 
     public void FullHP()
@@ -39,9 +41,13 @@ public class EnemyController : MonoBehaviour
 
         if(hp <= 0)
         {
-            OnDied?.Invoke();
-            GameManager.Data.Coin += GiveCoin;
-            StartCoroutine(DieEnumerator);
+            if(!isdie)
+            {
+                OnDied?.Invoke();
+                GameManager.Data.Coin += GiveCoin;
+                StartCoroutine(DieEnumerator);
+                isdie = true;
+            }
         }
     }
 

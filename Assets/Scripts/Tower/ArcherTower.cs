@@ -13,7 +13,7 @@ public class ArcherTower : Tower
         base.Awake();
 
         data = GameManager.Resource.Load<TowerData>("Data/ArcherTowerData");
-        range = data.towers[towerLV].range;
+        range = data.towers[element].range;
     }
 
     private void OnEnable()
@@ -34,7 +34,7 @@ public class ArcherTower : Tower
             if (enemyList.Count > 0)
             {
                 Attack(enemyList[0]);
-                yield return new WaitForSeconds(data.towers[towerLV].delay);
+                yield return new WaitForSeconds(data.towers[element].delay);
             }
             else
             {
@@ -47,7 +47,7 @@ public class ArcherTower : Tower
     {
         Arrow arrow = GameManager.Pool.Get<Arrow>(GameManager.Resource.Load<Arrow>("Tower/Arrow"), arrowPoint.position, arrowPoint.rotation);
         arrow.SetTarget(enemy);
-        arrow.SetDamage(data.towers[towerLV].damage);
+        arrow.SetDamage(data.towers[element].damage);
     }
 
     IEnumerator LookRoutine()

@@ -5,6 +5,7 @@ using UnityEngine;
 public class UpgardeArcherUI : InGameUI
 {
     public ArcherTowerUpgrade tower;
+    public int upgradeTowerLV;
 
     protected override void Awake()
     {
@@ -18,9 +19,9 @@ public class UpgardeArcherUI : InGameUI
     public void UpgradeArcherTower()
     {
         TowerData archerTowerData = GameManager.Resource.Load<TowerData>("Data/ArcherTowerData");
-        if (GameManager.Data.UseCoin(archerTowerData.towers[0].buildCost))
+        if (GameManager.Data.UseCoin(archerTowerData.towers[upgradeTowerLV].buildCost))
         {
-            //towerPlace.BuildTower(archerTowerData);
+           tower.UpgradeTower(archerTowerData);
             GameManager.UI.CloseInGameUI(this);
         }
         else
@@ -31,15 +32,7 @@ public class UpgardeArcherUI : InGameUI
 
     public void SellTower()
     {
-        TowerData canonTowerData = GameManager.Resource.Load<TowerData>("Data/CanonTowerData");
-        if (GameManager.Data.UseCoin(canonTowerData.towers[0].buildCost))
-        {
-            //towerPlace.BuildTower(canonTowerData);
-            GameManager.UI.CloseInGameUI(this);
-        }
-        else
-        {
-            Debug.Log("DonotbuildCanon");
-        }
+        tower.SellTower();
+        GameManager.UI.CloseInGameUI<InGameUI>(this);
     }
 }

@@ -16,8 +16,8 @@ public class MageTowerCons : Tower
 
     IEnumerator BuildMageTower()
     {
-        yield return new WaitForSeconds(data.towers[towerLV].buildTime);
+        yield return new WaitForSeconds(data.towers[element+1].buildTime);
         GameManager.Resource.Destroy(gameObject);
-        GameManager.Resource.Instantiate(data.towers[towerLV].tower, transform.position, transform.rotation);
+        GameManager.Resource.Instantiate(data.towers[element+1].tower, transform.position, transform.rotation);
     }
 }
