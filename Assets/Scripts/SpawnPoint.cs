@@ -9,6 +9,7 @@ public class SpawnPoint : MonoBehaviour
     private List<EnemyMover> EnemyList = new List<EnemyMover>();
     private List<Transform> Waypoint = new List<Transform>();
     private Transform enemys;
+    public bool isendWave = true;
     [SerializeField] float enemySpawnTime = 3;
     [SerializeField] int WaveEnemyCount = 30;
     [SerializeField] int enemyCount = 30;
@@ -77,9 +78,10 @@ public class SpawnPoint : MonoBehaviour
 
     IEnumerator StartWave()
     {
+        isendWave = false;
         float tTime = 0;
         int index = 0;
-        while (WaveEnemyCount > index)
+        while (WaveEnemyCount >= index)
         {
             tTime += Time.deltaTime;
             if (tTime > enemySpawnTime)
@@ -88,9 +90,11 @@ public class SpawnPoint : MonoBehaviour
                 ++index;
                 MakeEnemy();
             }
-            if (WaveEnemyCount == index + 1)
+            if (WaveEnemyCount == index)
             {
+                isendWave = true;
                 endWave?.Invoke();
+                break;
             }
             yield return null;
         }

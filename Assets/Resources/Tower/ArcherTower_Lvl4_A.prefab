@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1209636216975013326}
   - component: {fileID: 1220044337765206200}
   - component: {fileID: 129334901346162292}
-  - component: {fileID: -6976100868511999456}
   - component: {fileID: 3825033146012387405}
+  - component: {fileID: 2341627419356147354}
   m_Layer: 0
   m_Name: ArcherTower_Lvl4_A
   m_TagString: Untagged
@@ -104,22 +104,6 @@ MonoBehaviour:
   element: 7
   archer: {fileID: 8810237874657154315}
   arrowPoint: {fileID: 8168275803621364029}
---- !u!114 &-6976100868511999456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1204916789146556842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb01b8d51f650c9409f3835ce76ceade, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  element: 7
-  normal: {r: 1, g: 1, b: 1, a: 0}
-  onMouse: {r: 1, g: 0.41960785, b: 0.41960785, a: 0}
 --- !u!136 &3825033146012387405
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -134,6 +118,22 @@ CapsuleCollider:
   m_Height: 13
   m_Direction: 1
   m_Center: {x: -0.00000071525574, y: 6.2781987, z: 0.2379309}
+--- !u!114 &2341627419356147354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204916789146556842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bc09a101d455f4ab8ed02d65b07b18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
+  element: 7
+  normal: {r: 1, g: 1, b: 1, a: 0}
+  onMouse: {r: 1, g: 0.41960785, b: 0.41960785, a: 0}
 --- !u!1 &5003573552884022454
 GameObject:
   m_ObjectHideFlags: 0
