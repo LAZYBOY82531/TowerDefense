@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class CanonBall : MonoBehaviour
+public class Missile : MonoBehaviour
 {
     [SerializeField] float time;
     [SerializeField] float range;
-    [SerializeField] Vector3 gg;
+    private Rigidbody rb;
 
     private int damage;
     private Vector3 targetPoint;
-    public Vector3 prePos;
-    private Rigidbody rb;
 
     private void Awake()
     {
@@ -29,7 +28,7 @@ public class CanonBall : MonoBehaviour
         this.damage = damage;
     }
 
-
+    
     public void Explosion()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, range, LayerMask.GetMask("Enemy"));
@@ -55,10 +54,9 @@ public class CanonBall : MonoBehaviour
         float curTime = 0;
         while (curTime < time)
         {
-            prePos = transform.position;
             curTime += Time.deltaTime;
+            transform.right = rb.velocity;
             transform.position += new Vector3(xSpeed, ySpeed, zSpeed) * Time.deltaTime;
-            transform.up = transform.position - prePos;
             ySpeed += Physics.gravity.y * Time.deltaTime;
 
             yield return null;

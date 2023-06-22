@@ -5,93 +5,67 @@ using UnityEngine;
 
 public class Magic : MonoBehaviour
 {
-    [SerializeField] float range;
-    private List<EnemyController> enemys;
+    [SerializeField] float speed;
+    [SerializeField] int jumpCount = 0;
+    [SerializeField] List<EnemyController> allEnemies = new List<EnemyController>();
+    [SerializeField] EnemyController closestEnemy = null;
     private EnemyController enemy;
     private int damage;
-    private Vector3 targetPoint1;
-    private Vector3 targetPoint2;
-    private Vector3 targetPoint3;
-    private Vector3 targetPoint4;
+    private Vector3 targetPoint;
+    private int truejumpCount;
 
-
+    private void Start()
+    {
+        truejumpCount = jumpCount;
+    }
     public void SetTarget(EnemyController enemy)
     {
-        enemys.Add(enemy);
         this.enemy = enemy;
-        Target();
-        DamageEnemy();
+        targetPoint = enemy.transform.position;
+        StartCoroutine(MagicRoutine());
     }
-
     public void SetDamage(int damage)
     {
         this.damage = damage;
     }
 
-    public void Target()
+    private void OnDisable()
     {
-        int repeat = 1;
-        while (repeat < 4)
+        allEnemies.Clear();
+        closestEnemy = null;
+        jumpCount = truejumpCount;
+    }
+
+    IEnumerator MagicRoutine()
+    {
+        while (true)
         {
-            targetPoint1 = enemy.transform.position;
-            Collider[] colliders1 = Physics.OverlapSphere(targetPoint1, range, LayerMask.GetMask("Enemy"));
-            if (colliders1.Length >= 2)
+            if (enemy != null)
+                targetPoint = enemy.transform.position;
+            transform.LookAt(targetPoint);
+            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
+
+            if (Vector3.Distance(targetPoint, transform.position) < 0.1f)
             {
-                foreach (Collider collider in colliders1)
+                if (enemy != null)
                 {
-                    EnemyController isenemy = collider.GetComponent<EnemyController>();
-                    if (isenemy != enemy)
-                    {
-                        enemys.Add(isenemy);
-                        targetPoint2 = isenemy.transform.position;
-                        repeat++;
-                    }
-                    else
-                    {
-                        GameManager.Pool.Release(gameObject);
-                    }
-                    if (repeat == 2)
-                    {
-                        Collider[] colliders2 = Physics.OverlapSphere(targetPoint1, range, LayerMask.GetMask("Enemy"));
-                        if (colliders2.Length >= 2)
-                        {
-                            foreach (Collider collider2 in colliders2)
-                            {
-                                EnemyController isenemy2 = collider2.GetComponent<EnemyController>();
-                                if (isenemy2 != enemy)
-                                {
-                                    enemys.Add(isenemy2);
-                                    targetPoint3 = isenemy2.transform.position;
-                                    repeat++;
-                                }
-                                else
-                                {
-                                    GameManager.Pool.Release(gameObject);
-                                }
-                                if (repeat == 3)
-                                {
-                                }
-                            }
-                        }
-                        else
-                        {
-                            GameManager.Pool.Release(gameObject);
-                        }
-                    }
+                    Attack(enemy);
+                    jumpCount--;
+
                 }
             }
-            else
-            {
-                GameManager.Pool.Release(gameObject);
-            }
+            yield return null;
         }
     }
 
-    public void DamageEnemy()
+    public void Attack(EnemyController enemy)
     {
-        foreach(EnemyController enemy in enemys)
-        {
-            enemy.TakeHit(damage);
-        }
+        enemy?.TakeHit(damage);
+    }
+
+    IEnumerator ReleaseRoutine()
+    {
+        yield return new WaitForSeconds(0);
+        GameManager.Pool.Release(this);
     }
 }

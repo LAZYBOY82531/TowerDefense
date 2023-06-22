@@ -5,6 +5,7 @@ using UnityEngine;
 public class CanonTower : Tower
 {
     [SerializeField] Transform canonPoint;
+    [SerializeField] string canonBallName;
 
     protected override void Awake()
     {
@@ -42,7 +43,7 @@ public class CanonTower : Tower
 
     public void Attack(EnemyController enemy)
     {
-        CanonBall canon = GameManager.Pool.Get<CanonBall>(GameManager.Resource.Load<CanonBall>("Tower/CanonBall"), canonPoint.position, canonPoint.rotation);
+        CanonBall canon = GameManager.Pool.Get<CanonBall>(GameManager.Resource.Load<CanonBall>(canonBallName), canonPoint.position, canonPoint.rotation);
         canon.SetTarget(enemy);
         canon.SetDamage(data.towers[element].damage);
     }

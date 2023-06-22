@@ -18,12 +18,68 @@ MonoBehaviour:
     delay: 0
     range: 0
     buildTime: 0
-    buildCost: 20
+    buildCost: 200
     sellCost: 0
   - tower: {fileID: 4400334554461848241, guid: b6e8c1eccf67013499edf21191f74e41, type: 3}
     damage: 3
     delay: 5
     range: 50
-    buildTime: 3
+    buildTime: 5
     buildCost: 0
+    sellCost: 100
+  - tower: {fileID: 6999482321969043062, guid: 0c569433904fe4b419e2433db7dfbaeb, type: 3}
+    damage: 0
+    delay: 0
+    range: 0
+    buildTime: 0
+    buildCost: 250
+    sellCost: 0
+  - tower: {fileID: 1733760572764253483, guid: fcf18ebc70fae7d4780641b3677824b9, type: 3}
+    damage: 4
+    delay: 4
+    range: 50
+    buildTime: 5
+    buildCost: 0
+    sellCost: 220
+  - tower: {fileID: 839170531089466679, guid: 0fe9f76cbc9883244b051637ad440322, type: 3}
+    damage: 0
+    delay: 0
+    range: 0
+    buildTime: 0
+    buildCost: 350
     sellCost: 10
+  - tower: {fileID: 3686628922685066984, guid: 6e85a00c229abb34b8c310fb07af399a, type: 3}
+    damage: 5
+    delay: 4
+    range: 60
+    buildTime: 5
+    buildCost: 0
+    sellCost: 380
+  - tower: {fileID: 2986414039002665866, guid: bd74122cbd87bb74a8fbdefe422eef6d, type: 3}
+    damage: 0
+    delay: 0
+    range: 0
+    buildTime: 0
+    buildCost: 500
+    sellCost: 0
+  - tower: {fileID: 637169502050305771, guid: a68df4d0840ee3842889c2f6950e46ff, type: 3}
+    damage: 7
+    delay: 5
+    range: 70
+    buildTime: 5
+    buildCost: 0
+    sellCost: 630
+  - tower: {fileID: 3558463875160357369, guid: 499ec79dd495ee0499359b35a7ebd11c, type: 3}
+    damage: 0
+    delay: 0
+    range: 0
+    buildTime: 0
+    buildCost: 500
+    sellCost: 10
+  - tower: {fileID: 1277043978869586227, guid: fcfd25ac8cbce7649a884318dd9eb36a, type: 3}
+    damage: 5
+    delay: 3
+    range: 70
+    buildTime: 5
+    buildCost: 0
+    sellCost: 630

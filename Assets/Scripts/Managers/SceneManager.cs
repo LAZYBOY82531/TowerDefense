@@ -38,7 +38,6 @@ public class SceneManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Time.timeScale = 0f;
 
-
         AsyncOperation oper = UnitySceneManager.LoadSceneAsync(sceneName);
 
         while(!oper.isDone)

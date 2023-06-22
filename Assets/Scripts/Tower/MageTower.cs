@@ -50,6 +50,13 @@ public class MageTower : Tower
 
     public void Attack(EnemyController enemy)
     {
+        Magic magic = GameManager.Pool.Get<Magic>(GameManager.Resource.Load<Magic>("Tower/Magic"), magicPoint.position, magicPoint.rotation);
+        magic.SetTarget(enemy);
+        magic.SetDamage(data.towers[element].damage);
+    }
+
+    public void Attackaaaaaaaaaaaaa(EnemyController enemy)
+    {
         targetPoint = enemy.transform.position;
         enemys?.Add(enemy);
         Collider[] colliders1 = Physics.OverlapSphere(targetPoint, magicRange, LayerMask.GetMask("Enemy"));

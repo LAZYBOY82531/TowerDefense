@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TitleScene : BaseScene
+public class StageSelect : BaseScene
 {
-    public void GoStageSelect()
-    {
-        GameManager.Scene.LoadScene("StageSelect");
-    }
-
     protected override IEnumerator LoadingRoutine()
     {
+        GameManager.Pool.Awake();
+        GameManager.UI.StartScene();
         progress = 0f;
         Debug.Log("·£´ý ¸Ê »ý¼º");
         yield return new WaitForSecondsRealtime(1f);
@@ -25,5 +22,15 @@ public class TitleScene : BaseScene
 
         yield return new WaitForSecondsRealtime(1f);
         progress = 1f;
+    }
+
+    public void GoStage1()
+    {
+        GameManager.Scene.LoadScene("Stage1");
+    }
+
+    public void GoTitle()
+    {
+        GameManager.Scene.LoadScene("Title");
     }
 }
