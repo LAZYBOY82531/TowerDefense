@@ -9,6 +9,11 @@ public class TitleScene : BaseScene
         GameManager.Scene.LoadScene("StageSelect");
     }
 
+    public void Setting()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
     protected override IEnumerator LoadingRoutine()
     {
         progress = 0f;

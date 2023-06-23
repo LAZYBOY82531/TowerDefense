@@ -14,6 +14,7 @@ public class SettingSceneUI : SceneUI
     {
         base.Awake();
 
+        Time.timeScale = 1f;
         buttons["FasterButton"].onClick.AddListener(() => { Faster(); });
         buttons["VolumeButton"].onClick.AddListener(() => { Debug.Log("Volume"); });
         buttons["SettingButton"].onClick.AddListener(() => { OpenPausePopUpUI(); });

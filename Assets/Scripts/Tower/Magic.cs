@@ -8,7 +8,6 @@ public class Magic : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] int jumpCount = 0;
     [SerializeField] List<EnemyController> allEnemies = new List<EnemyController>();
-    [SerializeField] EnemyController closestEnemy = null;
     private EnemyController enemy;
     private int damage;
     private Vector3 targetPoint;
@@ -32,7 +31,6 @@ public class Magic : MonoBehaviour
     private void OnDisable()
     {
         allEnemies.Clear();
-        closestEnemy = null;
         jumpCount = truejumpCount;
     }
 

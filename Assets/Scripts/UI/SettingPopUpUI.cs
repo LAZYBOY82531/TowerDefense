@@ -10,6 +10,6 @@ public class SettingPopUpUI : PopUpUI
 
         buttons["Continue"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
         buttons["Setting"].onClick.AddListener(() => { GameManager.UI.OpenPopUpUI("UI/ConfigPopUpUI"); });
-        buttons["Exit"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+        buttons["Exit"].onClick.AddListener(() => { GameManager.Scene.LoadScene("Title"); });
     }
 }

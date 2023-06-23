@@ -7,10 +7,6 @@ using UnityEngine.Events;
 
 public class MapData : MonoBehaviour
 {
-    [SerializeField] SpawnPoint spawnPoint1;
-    [SerializeField] SpawnPoint spawnPoint2;
-    [SerializeField] SpawnPoint spawnPoint3;
-    [SerializeField] SpawnPoint spawnPoint4;
     [SerializeField] int waitTime;
     [SerializeField] int heart;
     [SerializeField] int coin;
@@ -19,13 +15,15 @@ public class MapData : MonoBehaviour
     [SerializeField] UnityEvent Wave2;
     [SerializeField] UnityEvent Wave3;
     [SerializeField] UnityEvent Wave4;
+    [SerializeField] UnityEvent WaveEnd;
+
 
 
     private void Awake()
     {
         GameManager.Data.Heart = heart;
         GameManager.Data.Coin = coin;
-        GameManager.Data.EndWave = endwave;
+        GameManager.Data.NowWave = 1;
     }
 
     private void Start()
@@ -35,43 +33,20 @@ public class MapData : MonoBehaviour
 
     public void NextWave()
     {
-        bool spawnPoint1end;
-        bool spawnPoint2end;
-        bool spawnPoint3end;
-        bool spawnPoint4end;
-        if (spawnPoint1 == true)
-            spawnPoint1end = spawnPoint1.isendWave;
-        else
-            spawnPoint1end = true;
-        if (spawnPoint2 == true)
-            spawnPoint2end = spawnPoint2.isendWave;
-        else
-            spawnPoint2end = true;
-        if (spawnPoint3 == true)
-            spawnPoint3end = spawnPoint3.isendWave;
-        else
-            spawnPoint3end = true;
-        if (spawnPoint4 == true)
-            spawnPoint4end = spawnPoint4.isendWave;
-        else
-            spawnPoint4end = true;
-        if (spawnPoint1end == true && spawnPoint2end == true && spawnPoint3end == true && spawnPoint4end == true)
+        GameManager.Data.NowWave += 1;
+
+        switch (GameManager.Data.NowWave)
         {
-            GameManager.Data.NowWave += 1;
+            case 2:
+                StartCoroutine(Wave2Start());
+                break;
+            case 3:
+                StartCoroutine(Wave3Start());
+                break;
+            case 4:
+                StartCoroutine(ClearGame());
+                break;
 
-            switch (GameManager.Data.NowWave)
-            {
-                case 2:
-                    StartCoroutine(Wave2Start());
-                    break;
-                case 3:
-                    StartCoroutine(Wave3Start());
-                    break;
-                case 4:
-                    StartCoroutine(Wave4Start());
-                    break;
-
-            }
         }
     }
 
@@ -97,5 +72,12 @@ public class MapData : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         Wave4?.Invoke();
+    }
+
+    IEnumerator ClearGame()
+    {
+        Time.timeScale = 1;
+        WaveEnd?.Invoke();
+        yield return null;
     }
 }

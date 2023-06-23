@@ -304,6 +304,9 @@ MonoBehaviour:
   Wave4:
     m_PersistentCalls:
       m_Calls: []
+  WaveEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &178497677
 Transform:
   m_ObjectHideFlags: 0
@@ -522,7 +525,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 745571666}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1125166314}
+        m_TargetAssemblyTypeName: TitleScene, Assembly-CSharp
+        m_MethodName: Setting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &745571666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,7 +997,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1125166314}
         m_TargetAssemblyTypeName: TitleScene, Assembly-CSharp
-        m_MethodName: OnStartButton
+        m_MethodName: GoStageSelect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
