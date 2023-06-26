@@ -9,6 +9,7 @@ public class SceneManager : MonoBehaviour
 {
     private BaseScene curScene;
     private LoadingUI loadingUI;
+    public GameOverUI gameOverUI;
 
     public BaseScene CurScene
     {
@@ -25,6 +26,15 @@ public class SceneManager : MonoBehaviour
         LoadingUI ui = Resources.Load<LoadingUI>("UI/LoadingUI");
         loadingUI = Instantiate(ui);
         loadingUI.transform.SetParent(transform, false);
+
+        GameOverUI GGui = Resources.Load<GameOverUI>("UI/GameOverUI");
+        gameOverUI = Instantiate(GGui);
+        gameOverUI.transform.SetParent(transform, false);
+    }
+
+    public static string GetActiveScene()
+    {
+        return UnitySceneManager.GetActiveScene().name;
     }
 
     public void LoadScene(string sceneName)

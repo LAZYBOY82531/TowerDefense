@@ -64,7 +64,7 @@ public class EnemyMover : MonoBehaviour
                     this.gameObject.SetActive(false);
                     ResetPosition();
                     fullHP?.Invoke();
-                    GameManager.Data.Heart -= 1;
+                    GameManager.Data.LoseHeart();
                     yield break;
                 }
             }

@@ -8,13 +8,14 @@ using UnityEngine.Events;
 public class MapData : MonoBehaviour
 {
     [SerializeField] int waitTime;
-    [SerializeField] int heart;
+    public int heart;
     [SerializeField] int coin;
     [SerializeField] int endwave;
     [SerializeField] UnityEvent Wave1;
     [SerializeField] UnityEvent Wave2;
     [SerializeField] UnityEvent Wave3;
     [SerializeField] UnityEvent Wave4;
+    [SerializeField] UnityEvent Wave5;
     [SerializeField] UnityEvent WaveEnd;
 
 
@@ -31,9 +32,17 @@ public class MapData : MonoBehaviour
         StartCoroutine(Wave1Start());
     }
 
+    
+
     public void NextWave()
     {
         GameManager.Data.NowWave += 1;
+
+        if(GameManager.Data.NowWave == endwave)
+        {
+            StartCoroutine(ClearGame());
+
+        }
 
         switch (GameManager.Data.NowWave)
         {
@@ -44,7 +53,12 @@ public class MapData : MonoBehaviour
                 StartCoroutine(Wave3Start());
                 break;
             case 4:
-                StartCoroutine(ClearGame());
+                StartCoroutine(Wave4Start());
+                break;
+            case 5:
+                StartCoroutine(Wave5Start());
+                break;
+            default:
                 break;
 
         }
@@ -73,10 +87,16 @@ public class MapData : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         Wave4?.Invoke();
     }
+    IEnumerator Wave5Start()
+    {
+        yield return new WaitForSeconds(waitTime);
+        Wave5?.Invoke();
+    }
 
     IEnumerator ClearGame()
     {
         Time.timeScale = 1;
+        yield return new WaitForSeconds(2f);
         WaveEnd?.Invoke();
         yield return null;
     }

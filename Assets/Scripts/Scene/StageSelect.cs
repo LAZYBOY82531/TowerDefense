@@ -29,6 +29,11 @@ public class StageSelect : BaseScene
         GameManager.Scene.LoadScene("Stage1");
     }
 
+    public void GoStage2()
+    {
+        GameManager.Scene.LoadScene("Stage2");
+    }
+
     public void GoTitle()
     {
         GameManager.Scene.LoadScene("Title");

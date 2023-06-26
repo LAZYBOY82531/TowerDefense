@@ -24,4 +24,14 @@ public class DataManager : MonoBehaviour
             return false;
         }
     }
+
+    public void LoseHeart()
+    {
+        heart--;
+        if(heart <= 0)
+        {
+            GameManager.Scene.gameOverUI.gameObject.SetActive(true);
+        }
+    }
+
 }
