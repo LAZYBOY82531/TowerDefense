@@ -69,8 +69,8 @@ public class CameraController : MonoBehaviour
     private void Zoom()
     {
         transform.Translate(Vector3.forward * zoomScroll * zoomSpeed * Time.deltaTime, Space.Self);
-        if (transform.position.y < 12) transform.position = new Vector3(transform.position.x, 12, transform.position.z);
-        else if(transform.position.y > 42) transform.position = new Vector3(transform.position.x, 42, transform.position.z);
+        if (transform.position.y < 30) transform.position = new Vector3(transform.position.x, 30, transform.position.z);
+        else if(transform.position.y > 50) transform.position = new Vector3(transform.position.x, 50, transform.position.z);
     }
 
     private void OnZoom(InputValue value)
