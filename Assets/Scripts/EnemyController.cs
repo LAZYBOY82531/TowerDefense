@@ -20,6 +20,7 @@ public class EnemyController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         fullhp = hp;
+        anim.SetBool("Walk Forward", true);
     }
 
     private void OnEnable()
