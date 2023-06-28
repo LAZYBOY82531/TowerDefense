@@ -6,7 +6,7 @@ public class WinCanvas : MonoBehaviour
 {
     private Animator anim;
     private IEnumerator End;
-    private GameObject gameObject;
+    private GameObject mapDataObject;
     [SerializeField] MapData mapdata;
     private GameObject player;
     [SerializeField] CameraController controller;
@@ -15,8 +15,8 @@ public class WinCanvas : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         End = EndGame();
-        gameObject = GameObject.FindGameObjectWithTag("MapData");
-        mapdata = gameObject.GetComponent<MapData>();
+        mapDataObject = GameObject.FindGameObjectWithTag("MapData");
+        mapdata = mapDataObject.GetComponent<MapData>();
         player = GameObject.FindGameObjectWithTag("CineMachine");
         controller = player?.GetComponent<CameraController>();
     }

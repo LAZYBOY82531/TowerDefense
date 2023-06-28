@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int fullhp;
     [SerializeField] int GiveCoin;
     [SerializeField] UnityEvent resetPosition;
+    public int damage;
     public int HP { get { return hp; } private set { hp = value; OnChangedHP?.Invoke(hp); } }
     public UnityEvent<int> OnChangedHP;
     private Animator anim;
@@ -65,5 +66,18 @@ public class EnemyController : MonoBehaviour
         FullHP();
         resetPosition?.Invoke();
         yield return null;
+    }
+
+    public void AttackSolider(UnitController Soldier)
+    {
+        StartCoroutine(AttackSoldierRoutine(Soldier));
+    }
+
+    IEnumerator AttackSoldierRoutine(UnitController Soldier)
+    {
+        while(true)
+        {
+            Soldier.SoldierTakeHit(damage);
+        }
     }
 }

@@ -6,7 +6,6 @@ public class GameOverUI : MonoBehaviour
 {
     public GameObject player;
     public CameraController controller;
-    [SerializeField] private GameObject gameObject;
 
     private void OnEnable()
     {

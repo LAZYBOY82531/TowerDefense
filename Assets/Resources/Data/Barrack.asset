@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc215733ceebdc44b970b4e0b729cf8, type: 3}
   m_Name: Barrack
   m_EditorClassIdentifier: 
-  towers: []
+  towers:
+  - tower: {fileID: 0}
+    damage: 3
+    delay: 0.8
+    range: 2
+    buildTime: 0
+    buildCost: 150
+    sellCost: 0
