@@ -13,6 +13,7 @@ public class UnitController : MonoBehaviour
     [SerializeField] public int hp;
     [SerializeField] public float attackDelay;
     [SerializeField] public float attackRange;
+    [SerializeField] Barrack barrack;
     public int fullhp;
     public	NavMeshAgent navMeshAgent;
 	public Animator anim;
@@ -25,7 +26,9 @@ public class UnitController : MonoBehaviour
     public GameObject enemyObject;
     public GameObject uc;
     public RTSUnitController rts;
+    public Vector3 idlePoint;
     Coroutine battleRoutine;
+    Coroutine searchEnemyRoutine;
     public EnemyController targetenemyController;
 
 
@@ -68,12 +71,32 @@ public class UnitController : MonoBehaviour
             {
                 navMeshAgent.enabled = false;
                 isMove = false;
+                searchEnemyRoutine = StartCoroutine(SearchEnemyRoutine());
                 yield break;
             }
 			yield return null;
         }
 	}
-    
+
+    IEnumerator SearchEnemyRoutine()
+    {
+        while (true)
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 10f, LayerMask.GetMask("Enemy"));
+            foreach (Collider collider in colliders)
+            {
+                GameObject enemy = collider.gameObject;
+                AddEnemy(enemy);
+                if(isChooseEnemy == true)
+                {
+                    yield break;
+                }
+            }
+            yield return null;
+        }
+    }
+
+
     public void AddEnemy(GameObject enemy)
     {
         targetenemyController = enemy.GetComponent<EnemyController>();
@@ -168,12 +191,14 @@ public class UnitController : MonoBehaviour
         while (true)
         {
             StopCoroutine(battleRoutine);
+            enemyController.isTarget = false;
             anim.SetTrigger("Die");
             yield return new WaitForSeconds(1.5f);
             RemoveEnemy(enemyObject);
             hp = fullhp;
             gameObject.transform.position = resetPoision;
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+            barrack.ResponSoldier(gameObject);
             yield break;
         }
     }

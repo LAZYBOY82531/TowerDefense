@@ -185,14 +185,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitMarker: {fileID: 5553793338853827067}
-  uc: {fileID: 0}
-  rts: {fileID: 0}
   damage: 2
-  fullhp: 0
-  hp: 20
+  hp: 1
   attackDelay: 1
   attackRange: 3
-  idlePoint: {x: 0, y: 0, z: 0}
+  fullhp: 0
+  navMeshAgent: {fileID: 0}
+  anim: {fileID: 0}
   resetPoision: {x: 0, y: 0, z: 0}
   enemyMover: {fileID: 0}
   enemyController: {fileID: 0}
@@ -200,6 +199,10 @@ MonoBehaviour:
   isMove: 0
   isdie: 0
   enemyObject: {fileID: 0}
+  uc: {fileID: 0}
+  rts: {fileID: 0}
+  idlePoint: {x: 0, y: 0, z: 0}
+  targetenemyController: {fileID: 0}
 --- !u!136 &4877872606232929632
 CapsuleCollider:
   m_ObjectHideFlags: 0
