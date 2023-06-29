@@ -11,11 +11,14 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int GiveCoin;
     [SerializeField] UnityEvent resetPosition;
     public int damage;
+    public float attackDelay;
     public int HP { get { return hp; } private set { hp = value; OnChangedHP?.Invoke(hp); } }
     public UnityEvent<int> OnChangedHP;
     private Animator anim;
     private IEnumerator DieEnumerator;
     private bool isdie = false;
+    public UnitController soldiers;
+    public bool isTarget;
 
     private void Awake()
     {
@@ -41,6 +44,7 @@ public class EnemyController : MonoBehaviour
     }
 
     public UnityEvent OnDied;
+
     public void TakeHit(int damage)
     {
         hp -= damage;
@@ -60,6 +64,9 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator Die()
     {
+        if(routine != null)
+            StopCoroutine(routine);
+        isTarget = false;
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
         this.gameObject.SetActive(false);
@@ -67,17 +74,31 @@ public class EnemyController : MonoBehaviour
         resetPosition?.Invoke();
         yield return null;
     }
-
+    
     public void AttackSolider(UnitController Soldier)
     {
-        StartCoroutine(AttackSoldierRoutine(Soldier));
+        soldiers = Soldier;
+        transform.LookAt(soldiers.transform);
+        Debug.Log("startbattle");
+        routine = StartCoroutine(AttackSoldierRoutine());
     }
 
-    IEnumerator AttackSoldierRoutine(UnitController Soldier)
+    Coroutine routine;
+    IEnumerator AttackSoldierRoutine()
     {
         while(true)
         {
-            Soldier.SoldierTakeHit(damage);
+            yield return new WaitForSeconds(attackDelay);
+            Debug.Log("attack");
+            anim.SetTrigger("Bite Attack");
+            if (soldiers != null)
+                soldiers.SoldierTakeHit(damage);
         }
+    }
+
+    public void EndBattle(UnitController soldier)
+    {
+        Debug.Log("endbattle");
+        StopCoroutine(routine);
     }
 }

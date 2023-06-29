@@ -6,8 +6,8 @@ public class MouseDrag: MonoBehaviour
 	private	Rect dragRect;
 	private	Vector2 start = Vector2.zero;
 	private	Vector2 end = Vector2.zero;	
-	private	Camera mainCamera;
-	private	RTSUnitController rtsUnitController;
+	public	Camera mainCamera;
+	public	RTSUnitController rtsUnitController;
 
 	private void Awake()
 	{
@@ -16,7 +16,7 @@ public class MouseDrag: MonoBehaviour
 		DrawDragRectangle();
 	}
 
-	private void Update()
+	/*private void Update()
 	{
 		if ( Input.GetMouseButtonDown(0) )
 		{
@@ -37,7 +37,7 @@ public class MouseDrag: MonoBehaviour
 			start = end = Vector2.zero;
 			DrawDragRectangle();
 		}
-	}
+	}*/
 
 	private void DrawDragRectangle()
 	{

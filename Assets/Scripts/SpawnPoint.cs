@@ -73,7 +73,7 @@ public class SpawnPoint : MonoBehaviour
     public void StartWaveFunction()
     {
         WaveStart = StartWave();
-        StartCoroutine(StartWave());
+        StartCoroutine(WaveStart);
     }
 
     IEnumerator StartWave()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MouseClick : MonoBehaviour
 {
@@ -14,45 +15,41 @@ public class MouseClick : MonoBehaviour
 		rtsUnitController = GetComponent<RTSUnitController>();
 	}
 
-	private void Update()
+	private void OnLeftButtonPush (InputValue value)
 	{
-		if ( Input.GetMouseButtonDown(0) )
-		{
-			RaycastHit hit;
-			Ray	ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-			if ( Physics.Raycast(ray, out hit, Mathf.Infinity, layerUnit) )
-			{
-				if ( hit.transform.GetComponent<UnitController>() == null ) return;
+        RaycastHit hit;
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerUnit))
+        {
+            if (hit.transform.GetComponent<UnitController>() == null) return;
 
-				if ( Input.GetKey(KeyCode.LeftShift) )
-				{
-					rtsUnitController.ShiftClickSelectUnit(hit.transform.GetComponent<UnitController>());
-				}
-				else
-				{
-					rtsUnitController.ClickSelectUnit(hit.transform.GetComponent<UnitController>());
-				}
-			}
-			else
-			{
-				if ( !Input.GetKey(KeyCode.LeftShift) )
-				{
-					rtsUnitController.DeselectAll();
-				}
-			}
-		}
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                rtsUnitController.ShiftClickSelectUnit(hit.transform.GetComponent<UnitController>());
+            }
+            else
+            {
+                rtsUnitController.ClickSelectUnit(hit.transform.GetComponent<UnitController>());
+            }
+        }
+        else
+        {
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                rtsUnitController.DeselectAll();
+            }
+        }
+    }
+    private void OnRightButtonPush(InputValue value)
+    {
+        RaycastHit hit;
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
 
-		if ( Input.GetMouseButtonDown(1) )
-		{
-			RaycastHit	hit;
-			Ray	ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-			if ( Physics.Raycast(ray, out hit, Mathf.Infinity, layerGround) )
-			{
-                hitpoint = hit.point;
-                rtsUnitController.MoveSelectedUnits(hitpoint);
-			}
-		}
-	}
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerGround))
+        {
+            hitpoint = hit.point;
+            rtsUnitController.MoveSelectedUnits(hitpoint);
+        }
+    }
 }
 

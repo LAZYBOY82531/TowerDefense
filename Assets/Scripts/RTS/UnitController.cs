@@ -9,29 +9,30 @@ using UnityEngine.Rendering;
 public class UnitController : MonoBehaviour
 {
 	[SerializeField] private GameObject unitMarker;
-	private	NavMeshAgent navMeshAgent;
-	private Animator anim;
-	public GameObject uc;
-	public RTSUnitController rts;
-	public int damage;
+    [SerializeField] private int damage;
+    [SerializeField] public int hp;
+    [SerializeField] public float attackDelay;
+    [SerializeField] public float attackRange;
     public int fullhp;
-    public int hp;
-    public float attackDelay;
-	public float attackRange;
-	public Vector3 idlePoint;
-	public Vector3 resetPoision;
-    public StateBase[] states;
-	public EnemyMover enemyMover = null;
-	public EnemyController enemyController = null;
-	public bool isChooseEnemy = false;
-    public bool isMove = false;
-    public bool isdie = false;
+    public	NavMeshAgent navMeshAgent;
+	public Animator anim;
+    public Vector3 resetPoision;
+    public EnemyMover enemyMover;
+    public EnemyController enemyController;
+    public bool isChooseEnemy;
+    public bool isMove;
+    public bool isdie;
+    public GameObject enemyObject;
+    public GameObject uc;
+    public RTSUnitController rts;
+    Coroutine battleRoutine;
+    public EnemyController targetenemyController;
 
 
     private void Awake()
 	{
 		navMeshAgent = GetComponent<NavMeshAgent>();
-		uc = GameObject.FindGameObjectWithTag("UnitControlSystem");
+		uc = GameObject.FindGameObjectWithTag("MainCamera");
         rts = uc.GetComponent<RTSUnitController>();
 		rts.UnitList.Add(this);
         anim = GetComponent<Animator>();
@@ -72,56 +73,77 @@ public class UnitController : MonoBehaviour
 			yield return null;
         }
 	}
-
+    
     public void AddEnemy(GameObject enemy)
     {
-		isChooseEnemy = true;
-		if (isChooseEnemy == false && isMove == false)
+        targetenemyController = enemy.GetComponent<EnemyController>();
+        if (!targetenemyController.isTarget)
         {
-            navMeshAgent.enabled = true;
-            anim?.SetBool("IsTarget", true);
-			enemyController = enemy.GetComponent<EnemyController>();
-			enemyMover = enemy.GetComponent<EnemyMover>();
-            StartCoroutine(GoBattleEnemyCoroutine(enemyMover, enemyController));
+            targetenemyController.isTarget = true;
+            if (isChooseEnemy == false && isMove == false)
+            {
+                isChooseEnemy = true;
+                enemyObject = enemy;
+                enemyController = enemy.GetComponent<EnemyController>();
+                enemyMover = enemy.GetComponent<EnemyMover>();
+                navMeshAgent.enabled = true;
+                anim?.SetBool("IsTarget", true);
+                StartCoroutine(GoBattleEnemyCoroutine());
+            }
+            else
+                targetenemyController.isTarget = false;
         }
     }
 
-    public void RemoveEnemyMover(EnemyMover enemy)
+    public void RemoveEnemy(GameObject enemy)
     {
-		isChooseEnemy = false;
-		enemyMover = null;
-        enemyController = null;
+        if(enemyObject == enemy)
+        {
+            isChooseEnemy = false;
+            enemyObject = null;
+            enemyMover = null;
+            enemyController = null;
+        }
     }
-
-	IEnumerator GoBattleEnemyCoroutine(EnemyMover enemyMover, EnemyController enemyController)
+    
+	IEnumerator GoBattleEnemyCoroutine()
 	{
 		while (true)
         {
-            if(enemyMover != null)
+            if (enemyController.HP <= 0)
+            {
+                RemoveEnemy(enemyObject);
+                yield break;
+            }
+            if (enemyMover != null)
                 navMeshAgent.SetDestination(enemyMover.transform.position);
             if (Vector3.Distance(enemyMover.transform.position, transform.position) < attackRange)
             {
+                isChooseEnemy = true;
                 navMeshAgent.enabled = false;
                 enemyMover.BattleStart();
 				enemyController.AttackSolider(this);
-                StartCoroutine(BattleEnemyCoroutine(enemyMover, enemyController));
+                battleRoutine = StartCoroutine(BattleEnemyCoroutine());
                 yield break;
             }
+            yield return null;
         }
     }
 
-	IEnumerator BattleEnemyCoroutine(EnemyMover enemyMover, EnemyController enemyController)
+	IEnumerator BattleEnemyCoroutine()
 	{
 		while(true)
-		{
-			anim.SetTrigger("Attack");
+        {
+            anim.SetTrigger("Attack");
             if(enemyMover != null)
 			    enemyController.TakeHit(damage);
 			yield return new WaitForSeconds(attackDelay);
 			if (enemyController.HP <= 0)
             {
-
+                RemoveEnemy(enemyObject);
+                yield break;
             }
+            yield return null;
 		}
 	}
 
@@ -134,6 +156,7 @@ public class UnitController : MonoBehaviour
             if (!isdie)
             {
                 enemyMover.BackPosition();
+                enemyController.EndBattle(this);
                 StartCoroutine(Die());
                 isdie = true;
             }
@@ -144,11 +167,13 @@ public class UnitController : MonoBehaviour
     {
         while (true)
         {
+            StopCoroutine(battleRoutine);
             anim.SetTrigger("Die");
-            yield return new WaitForSeconds(1.2f);
-            this.gameObject.SetActive(false);
+            yield return new WaitForSeconds(1.5f);
+            RemoveEnemy(enemyObject);
             hp = fullhp;
             gameObject.transform.position = resetPoision;
+            this.gameObject.SetActive(false);
             yield break;
         }
     }

@@ -13,10 +13,7 @@ public class SoldierRange : MonoBehaviour
     {
         if (((1 << other.gameObject.layer) & enemyMask) != 0)
         {
-            EnemyController enemy = other.GetComponent<EnemyController>();
-            GameObject enemyObject = other.GetComponent<GameObject>();
-            OnInRangeEnemy?.Invoke(enemyObject);
-            enemy.OnDied.AddListener(() => { OnOutRangeEnemy?.Invoke(enemyObject); });
+            OnInRangeEnemy?.Invoke(other.gameObject);
         }
     }
 
@@ -24,8 +21,7 @@ public class SoldierRange : MonoBehaviour
     {
         if (((1 << other.gameObject.layer) & enemyMask) != 0)
         {
-            GameObject enemyObject = other.GetComponent<GameObject>();
-            OnOutRangeEnemy?.Invoke(enemyObject);
+            OnOutRangeEnemy?.Invoke(other.gameObject);
         }
     }
 }

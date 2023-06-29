@@ -59,7 +59,6 @@ public class Barrack : Tower
         yield return new WaitForSeconds(0.5f);
         unit1.SetActive(true);
         unitC1.resetPoision = unitSponPoint.position;
-        unitC1.idlePoint = unit1IdlePoint;
         unitC1.MoveTo(unit1IdlePoint);
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("IsOpen", false);
@@ -68,7 +67,6 @@ public class Barrack : Tower
         yield return new WaitForSeconds(0.5f);
         unit2.SetActive(true);
         unitC2.resetPoision = unitSponPoint.position;
-        unitC2.idlePoint = unit2IdlePoint;
         unitC2.MoveTo(unit2IdlePoint);
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("IsOpen", false);
@@ -77,7 +75,6 @@ public class Barrack : Tower
         yield return new WaitForSeconds(0.5f);
         unit3.SetActive(true);
         unitC3.resetPoision = unitSponPoint.position;
-        unitC3.idlePoint = unit3IdlePoint;
         unitC3.MoveTo(unit3IdlePoint);
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("IsOpen", false);

@@ -13,6 +13,7 @@ public class EnemyMover : MonoBehaviour
     public int wayPointIndex = 0;
     public bool IsStart = false;
     public float attackRange;
+    Coroutine moveRoutine;
 
     private void Awake()
     {
@@ -40,7 +41,7 @@ public class EnemyMover : MonoBehaviour
     public void StartMove()
     {
         agent.destination = wayPoints[wayPointIndex].position;
-        StartCoroutine(MoveRoutine());
+        moveRoutine = StartCoroutine(MoveRoutine());
     }
 
     IEnumerator MoveRoutine()
@@ -62,6 +63,7 @@ public class EnemyMover : MonoBehaviour
                     yield break;
                 }
             }
+            yield return null;
         }
     }
 
@@ -78,7 +80,6 @@ public class EnemyMover : MonoBehaviour
             agent.destination = wayPoints[wayPointIndex].position;
     }
 
-
     public void GetWayPoints (List<Transform> get)
     {
         this.wayPoints = get;
@@ -86,10 +87,10 @@ public class EnemyMover : MonoBehaviour
             return;
         gameObject.SetActive(true);
     }
-
+    
     public void BattleStart()
     {
-        StopCoroutine(MoveRoutine());
+        StopCoroutine(moveRoutine);
         agent.enabled = false;
     }
 
