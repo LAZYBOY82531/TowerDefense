@@ -9,27 +9,27 @@ using UnityEngine.Rendering;
 public class UnitController : MonoBehaviour
 {
 	[SerializeField] private GameObject unitMarker;
-    [SerializeField] private int damage;
-    [SerializeField] public int hp;
-    [SerializeField] public float attackDelay;
-    [SerializeField] public float attackRange;
+    [SerializeField] private int hp;
     [SerializeField] Barrack barrack;
-    public int fullhp;
-    public	NavMeshAgent navMeshAgent;
-	public Animator anim;
-    public Vector3 resetPoision;
-    public EnemyMover enemyMover;
-    public EnemyController enemyController;
-    public bool isChooseEnemy;
-    public bool isMove;
-    public bool isdie;
-    public GameObject enemyObject;
-    public GameObject uc;
-    public RTSUnitController rts;
+    public int damage;
+    public float attackDelay;
+    public float attackRange;
     public Vector3 idlePoint;
+    public Vector3 resetPoision;
+    private int fullhp;
+    private	NavMeshAgent navMeshAgent;
+	private Animator anim;
+    private EnemyMover enemyMover;
+    private EnemyController enemyController;
+    private bool isChooseEnemy;
+    private bool isMove;
+    private bool isdie;
+    private GameObject enemyObject;
+    private GameObject uc;
+    private RTSUnitController rts;
     Coroutine battleRoutine;
     Coroutine searchEnemyRoutine;
-    public EnemyController targetenemyController;
+    private EnemyController targetenemyController;
 
 
     private void Awake()

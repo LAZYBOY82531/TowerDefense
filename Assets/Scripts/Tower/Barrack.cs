@@ -56,6 +56,9 @@ public class Barrack : Tower
         anim.SetBool("IsOpen", true);
         yield return new WaitForSeconds(0.5f);
         unit1.SetActive(true);
+        unitC1.damage = data.towers[element].damage;
+        unitC1.attackDelay = data.towers[element].delay;
+        unitC1.attackRange = data.towers[element].range;
         unitC1.resetPoision = unitSponPoint.position;
         unitC1.idlePoint = unit1IdlePoint;
         unitC1.MoveTo(unit1IdlePoint);
@@ -65,6 +68,9 @@ public class Barrack : Tower
         anim.SetBool("IsOpen", true);
         yield return new WaitForSeconds(0.5f);
         unit2.SetActive(true);
+        unitC2.damage = data.towers[element].damage;
+        unitC2.attackDelay = data.towers[element].delay;
+        unitC2.attackRange = data.towers[element].range;
         unitC2.resetPoision = unitSponPoint.position;
         unitC2.idlePoint = unit2IdlePoint;
         unitC2.MoveTo(unit2IdlePoint);
@@ -74,6 +80,9 @@ public class Barrack : Tower
         anim.SetBool("IsOpen", true);
         yield return new WaitForSeconds(0.5f);
         unit3.SetActive(true);
+        unitC3.damage = data.towers[element].damage;
+        unitC3.attackDelay = data.towers[element].delay;
+        unitC3.attackRange = data.towers[element].range;
         unitC3.resetPoision = unitSponPoint.position;
         unitC3.idlePoint = unit3IdlePoint;
         unitC3.MoveTo(unit3IdlePoint);

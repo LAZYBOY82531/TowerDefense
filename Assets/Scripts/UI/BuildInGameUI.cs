@@ -14,6 +14,7 @@ public class BuildInGameUI : InGameUI
         buttons["Mage"].onClick.AddListener(() => { BuildMageTower(); });
         buttons["Archer"].onClick.AddListener(() => { BuildArcherTower(); });
         buttons["Canon"].onClick.AddListener(() => { BuildCanonTower(); });
+        buttons["Barrack"].onClick.AddListener(() => { BuildBarrackTower(); });
     }
 
     public void BuildArcherTower()
@@ -55,6 +56,20 @@ public class BuildInGameUI : InGameUI
         else
         {
             Debug.Log("DonotbuildMage");
+        }
+    }
+
+    public void BuildBarrackTower()
+    {
+        TowerData barrackTowerData = GameManager.Resource.Load<TowerData>("Data/BarrackTowerData");
+        if (GameManager.Data.UseCoin(barrackTowerData.towers[0].buildCost))
+        {
+            towerPlace.BuildTower(barrackTowerData);
+            GameManager.UI.CloseInGameUI(this);
+        }
+        else
+        {
+            Debug.Log("DonotbuildBarrack");
         }
     }
 }
