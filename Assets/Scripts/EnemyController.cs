@@ -77,6 +77,7 @@ public class EnemyController : MonoBehaviour
     
     public void AttackSolider(UnitController Soldier)
     {
+        anim.SetBool("Walk Forward", false);
         soldiers = Soldier;
         transform.LookAt(soldiers.transform);
         Debug.Log("startbattle");
@@ -98,6 +99,7 @@ public class EnemyController : MonoBehaviour
 
     public void EndBattle(UnitController soldier)
     {
+        anim.SetBool("Walk Forward", true);
         Debug.Log("endbattle");
         StopCoroutine(routine);
     }

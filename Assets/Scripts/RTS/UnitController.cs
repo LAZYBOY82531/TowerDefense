@@ -42,7 +42,12 @@ public class UnitController : MonoBehaviour
         fullhp = hp;
     }
 
-	public void SelectUnit()
+    private void OnEnable()
+    {
+        isdie = false;
+    }
+
+    public void SelectUnit()
 	{
 		unitMarker.SetActive(true);
 	}
@@ -77,6 +82,7 @@ public class UnitController : MonoBehaviour
 			yield return null;
         }
 	}
+
 
     IEnumerator SearchEnemyRoutine()
     {
@@ -192,6 +198,7 @@ public class UnitController : MonoBehaviour
         {
             StopCoroutine(battleRoutine);
             enemyController.isTarget = false;
+            Debug.Log("diiiiie");
             anim.SetTrigger("Die");
             yield return new WaitForSeconds(1.5f);
             RemoveEnemy(enemyObject);
