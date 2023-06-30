@@ -61,7 +61,7 @@ public class RTSUnitController : MonoBehaviour
 		selectedUnitList.Add(newUnit);
 	}
 
-	private void DeselectUnit(UnitController newUnit)
+	public void DeselectUnit(UnitController newUnit)
 	{
 		newUnit.DeselectUnit();
 		selectedUnitList.Remove(newUnit);

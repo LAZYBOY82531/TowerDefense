@@ -7,6 +7,7 @@ public class WinCanvas : MonoBehaviour
     private Animator anim;
     private IEnumerator End;
     private GameObject mapDataObject;
+    [SerializeField] int thisStage;
     [SerializeField] MapData mapdata;
     private GameObject player;
     [SerializeField] CameraController controller;
@@ -17,7 +18,7 @@ public class WinCanvas : MonoBehaviour
         End = EndGame();
         mapDataObject = GameObject.FindGameObjectWithTag("MapData");
         mapdata = mapDataObject.GetComponent<MapData>();
-        player = GameObject.FindGameObjectWithTag("CineMachine");
+        player = GameObject.FindGameObjectWithTag("MainCamera");
         controller = player?.GetComponent<CameraController>();
     }
 
@@ -33,33 +34,33 @@ public class WinCanvas : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         if (GameManager.Data.Heart == mapdata.heart)
         {
-            PlayerPrefs.SetInt("Stage1Score", 3);
+            PlayerPrefs.SetInt("Stage" + thisStage + "Score", 3);
             anim.SetBool("Gold", true);
         }
         else if (GameManager.Data.Heart >= mapdata.heart/2 - 0.5f)
         {
-            if (PlayerPrefs.HasKey("Stage1Score"))
+            if (PlayerPrefs.HasKey("Stage" + thisStage + "Score"))
             {
-                if(PlayerPrefs.GetInt("Stage1Score") < 2)
+                if(PlayerPrefs.GetInt("Stage" + thisStage + "Score") < 2)
                 {
-                    PlayerPrefs.SetInt("Stage1Score", 2);
+                    PlayerPrefs.SetInt("Stage" + thisStage + "Score", 2);
                 }
             }
             else
             {
-                PlayerPrefs.SetInt("Stage1Score", 2);
+                PlayerPrefs.SetInt("Stage" + thisStage + "Score", 2);
             }
             anim.SetBool("Silver", true);
         }
         else
         {
-            if (PlayerPrefs.HasKey("Stage1Score"))
+            if (PlayerPrefs.HasKey("Stage" + thisStage + "Score"))
             {
-                PlayerPrefs.SetInt("Stage1Score", 1);
+                PlayerPrefs.SetInt("Stage" + thisStage + "Score", 1);
             }
             else
             {
-                PlayerPrefs.SetInt("Stage1Score", 1);
+                PlayerPrefs.SetInt("Stage" + thisStage + "Score", 1);
             }
             anim.SetBool("Bronze", true);
         }
@@ -77,6 +78,6 @@ public class WinCanvas : MonoBehaviour
 
     public void NextScene()
     {
-
+        GameManager.Scene.LoadScene("Stage2");
     }
 }

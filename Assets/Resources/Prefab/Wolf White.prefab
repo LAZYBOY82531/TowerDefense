@@ -1186,9 +1186,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  damage: 2
+  attackDelay: 2
   OnChangedHP:
     m_PersistentCalls:
       m_Calls: []
+  soldiers: {fileID: 0}
+  isTarget: 0
   OnDied:
     m_PersistentCalls:
       m_Calls:
@@ -1246,6 +1250,7 @@ MonoBehaviour:
   wayPoints: []
   wayPointIndex: 0
   IsStart: 0
+  attackRange: 0
 --- !u!1 &1675628249591230
 GameObject:
   m_ObjectHideFlags: 0

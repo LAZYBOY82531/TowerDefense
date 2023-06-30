@@ -1606,7 +1606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb4ee6f5ccdc1845a3febc6ff1c1d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 5
   fullhp: 0
   GiveCoin: 10
   resetPosition:
@@ -1636,8 +1636,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  damage: 20
-  attackDelay: 3
+  damage: 1
+  attackDelay: 2
   OnChangedHP:
     m_PersistentCalls:
       m_Calls: []

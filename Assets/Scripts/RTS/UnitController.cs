@@ -3,20 +3,21 @@ using System.ComponentModel;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.Networking.Types;
 using UnityEngine.Rendering;
 
 public class UnitController : MonoBehaviour
 {
 	[SerializeField] private GameObject unitMarker;
-    [SerializeField] private int hp;
+    [SerializeField] int hp;
     [SerializeField] Barrack barrack;
     public int damage;
     public float attackDelay;
     public float attackRange;
     public Vector3 idlePoint;
     public Vector3 resetPoision;
-    private int fullhp;
+    public int fullHP;
     private	NavMeshAgent navMeshAgent;
 	private Animator anim;
     private EnemyMover enemyMover;
@@ -30,6 +31,8 @@ public class UnitController : MonoBehaviour
     Coroutine battleRoutine;
     Coroutine searchEnemyRoutine;
     private EnemyController targetenemyController;
+    public int HP { get { return hp; } private set { hp = value; OnChangedHP?.Invoke(hp); } }
+    public UnityEvent<int> OnChangedHP;
 
 
     private void Awake()
@@ -39,7 +42,7 @@ public class UnitController : MonoBehaviour
         rts = uc.GetComponent<RTSUnitController>();
 		rts.UnitList.Add(this);
         anim = GetComponent<Animator>();
-        fullhp = hp;
+        fullHP = hp;
     }
 
     private void OnEnable()
@@ -139,20 +142,37 @@ public class UnitController : MonoBehaviour
 	{
 		while (true)
         {
-            if (enemyController.HP <= 0)
+            navMeshAgent.enabled = true;
+            if (enemyMover != null)
+            {
+                if (enemyController.HP <= 0)
+                {
+                    RemoveEnemy(enemyObject);
+                    StartCoroutine(BattleEnemyCoroutine());
+                    yield break;
+                }
+            }
+            else
             {
                 RemoveEnemy(enemyObject);
                 yield break;
             }
             if (enemyMover != null)
-                navMeshAgent.SetDestination(enemyMover.transform.position);
-            if (Vector3.Distance(enemyMover.transform.position, transform.position) < attackRange)
             {
-                isChooseEnemy = true;
-                navMeshAgent.enabled = false;
-                enemyMover.BattleStart();
-				enemyController.AttackSolider(this);
-                battleRoutine = StartCoroutine(BattleEnemyCoroutine());
+                navMeshAgent.SetDestination(enemyMover.transform.position);
+                if (Vector3.Distance(enemyMover.transform.position, transform.position) < attackRange)
+                {
+                    isChooseEnemy = true;
+                    navMeshAgent.enabled = false;
+                    enemyMover.BattleStart();
+                    enemyController.AttackSolider(this);
+                    battleRoutine = StartCoroutine(BattleEnemyCoroutine());
+                    yield break;
+                }
+            }
+            else
+            {
+                RemoveEnemy(enemyObject);
                 yield break;
             }
             yield return null;
@@ -166,8 +186,22 @@ public class UnitController : MonoBehaviour
             anim.SetTrigger("Attack");
             if(enemyMover != null)
 			    enemyController.TakeHit(damage);
-			yield return new WaitForSeconds(attackDelay);
-			if (enemyController.HP <= 0)
+            else
+            {
+                RemoveEnemy(enemyObject);
+                yield break;
+            }
+            yield return new WaitForSeconds(attackDelay);
+            if (enemyMover != null)
+            {
+                if (enemyController.HP <= 0)
+                {
+                    RemoveEnemy(enemyObject);
+                    StartCoroutine(SearchEnemyRoutine());
+                    yield break;
+                }
+            }
+            else
             {
                 RemoveEnemy(enemyObject);
                 yield break;
@@ -179,6 +213,7 @@ public class UnitController : MonoBehaviour
     public void SoldierTakeHit(int damage)
     {
         hp -= damage;
+        OnChangedHP?.Invoke(hp);
 
         if (hp <= 0)
         {
@@ -196,13 +231,15 @@ public class UnitController : MonoBehaviour
     {
         while (true)
         {
+            DeselectUnit();
+            rts.DeselectUnit(this);
             StopCoroutine(battleRoutine);
             enemyController.isTarget = false;
             Debug.Log("diiiiie");
             anim.SetTrigger("Die");
             yield return new WaitForSeconds(1.5f);
             RemoveEnemy(enemyObject);
-            hp = fullhp;
+            HP = fullHP;
             gameObject.transform.position = resetPoision;
             gameObject.SetActive(false);
             barrack.ResponSoldier(gameObject);

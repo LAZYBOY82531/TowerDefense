@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MouseDrag: MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class MouseDrag: MonoBehaviour
 	private	Vector2 end = Vector2.zero;	
 	public	Camera mainCamera;
 	public	RTSUnitController rtsUnitController;
+	private bool ispressed;
 
 	private void Awake()
 	{
@@ -16,28 +18,33 @@ public class MouseDrag: MonoBehaviour
 		DrawDragRectangle();
 	}
 
-	/*private void Update()
+	private void OnLeftButton(InputValue value)
 	{
-		if ( Input.GetMouseButtonDown(0) )
-		{
-			start = Input.mousePosition;
-			dragRect = new Rect();
-		}
-		
-		if ( Input.GetMouseButton(0) )
-		{
-			end = Input.mousePosition;
-			DrawDragRectangle();
-		}
+		if (value.isPressed)
+        {
+            ispressed = true;
+            start = Input.mousePosition;
+            dragRect = new Rect();
+        }
 
-		if ( Input.GetMouseButtonUp(0) )
-		{
-			CalculateDragRect();
-			SelectUnits();
-			start = end = Vector2.zero;
-			DrawDragRectangle();
-		}
-	}*/
+		if (!value.isPressed)
+        {
+            ispressed = false;
+            CalculateDragRect();
+            SelectUnits();
+            start = end = Vector2.zero;
+            DrawDragRectangle();
+        }
+    }
+
+	private void OnLeftDrag(InputValue value)
+    {
+		if (ispressed)
+        {
+            end = Input.mousePosition;
+            DrawDragRectangle();
+        }
+    }
 
 	private void DrawDragRectangle()
 	{

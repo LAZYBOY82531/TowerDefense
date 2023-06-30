@@ -10,13 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fc215733ceebdc44b970b4e0b729cf8, type: 3}
-  m_Name: Barrack
+  m_Name: BarrackTowerData
   m_EditorClassIdentifier: 
   towers:
-  - tower: {fileID: 0}
-    damage: 3
-    delay: 0.8
-    range: 2
+  - tower: {fileID: 1536876292396117539, guid: 0c935d8623eb4614682997fe284cfc63, type: 3}
+    damage: 0
+    delay: 0
+    range: 0
     buildTime: 0
-    buildCost: 150
+    buildCost: 200
     sellCost: 0
+  - tower: {fileID: 1504077100336613393, guid: da96106ed6a147042b68c2ad88babb5f, type: 3}
+    damage: 3
+    delay: 1
+    range: 3
+    buildTime: 5
+    buildCost: 0
+    sellCost: 100

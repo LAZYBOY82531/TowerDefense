@@ -9,7 +9,7 @@ public class GameOverUI : MonoBehaviour
 
     private void OnEnable()
     {
-        player = GameObject.FindGameObjectWithTag("CineMachine");
+        player = GameObject.FindGameObjectWithTag("MainCamera");
         controller = player?.GetComponent<CameraController>();
         Time.timeScale = 1;
         controller.enabled = false;
