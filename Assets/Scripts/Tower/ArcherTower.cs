@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.AssemblyQualifiedNameParser;
 using UnityEngine;
 
 public class ArcherTower : Tower
@@ -34,7 +35,7 @@ public class ArcherTower : Tower
             if (enemyList.Count > 0)
             {
                 Attack(enemyList[0]);
-                yield return new WaitForSeconds(data.towers[element].delay);
+                yield return new WaitForSeconds(data.towers[element].delay - (PlayerPrefs.GetInt("ArcherTowerAttackDelay") * 0.1f));
             }
             else
             {
@@ -47,7 +48,7 @@ public class ArcherTower : Tower
     {
         Arrow arrow = GameManager.Pool.Get<Arrow>(GameManager.Resource.Load<Arrow>("Tower/Arrow"), arrowPoint.position, arrowPoint.rotation);
         arrow.SetTarget(enemy);
-        arrow.SetDamage(data.towers[element].damage);
+        arrow.SetDamage(data.towers[element].damage + PlayerPrefs.GetInt("ArcherTowerDamage"));
     }
 
     IEnumerator LookRoutine()

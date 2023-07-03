@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
         transform.Translate(Vector3.right * moveDir.x * moveSpeed * Time.unscaledDeltaTime, Space.World);
         transform.Translate(Vector3.forward * moveDir.y * moveSpeed * Time.unscaledDeltaTime, Space.World);
 
-        if (transform.position.x < -40) transform.position = new Vector3(-40, transform.position.y, transform.position.z);
+        if (transform.position.x < -50) transform.position = new Vector3(-50, transform.position.y, transform.position.z);
         else if (transform.position.x > 72) transform.position = new Vector3(72, transform.position.y, transform.position.z);
 
         if (transform.position.z < -95) transform.position = new Vector3(transform.position.x, transform.position.y, -95);

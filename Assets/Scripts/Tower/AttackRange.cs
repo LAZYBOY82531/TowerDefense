@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class AttackRange : MonoBehaviour
 {
     [SerializeField] Tower tower;
+
     public LayerMask enemyMask;
     private CapsuleCollider collider;
     public UnityEvent<EnemyController> OnInRangeEnemy;
@@ -18,7 +20,12 @@ public class AttackRange : MonoBehaviour
 
     private void Start()
     {
-        collider.radius = tower.range;
+        if (tower.data == GameManager.Resource.Load<TowerData>("Data/ArcherTowerData"))
+            collider.radius = tower.range + PlayerPrefs.GetInt("ArcherTowerRange");
+        else if (tower.data == GameManager.Resource.Load<TowerData>("Data/CanonTowerData"))
+            collider.radius = tower.range + PlayerPrefs.GetInt("CanonTowerRange");
+        else if (tower.data == GameManager.Resource.Load<TowerData>("Data/MageTowerData"))
+            collider.radius = tower.range + PlayerPrefs.GetInt("MageTowerRange");
     }
 
     private void OnTriggerEnter(Collider other)

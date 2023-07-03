@@ -2,13 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpgradeScrollViewUI : BaseUI
+public class UpgradeScrollViewUI : PopUpUI
 {
+    private int stagesPoint;
+    private int remindePoint;
     private int usedPoint;
+    private int stagescore1;
+    private int stagescore2;
 
     protected override void Awake()
     {
         base.Awake();
+        buttons["Close"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+    }
+    private void Start()
+    {
         if (!PlayerPrefs.HasKey("ArcherTowerDamage"))
             PlayerPrefs.SetInt("ArcherTowerDamage", 0);
         if (!PlayerPrefs.HasKey("ArcherTowerAttackDelay"))
@@ -33,20 +41,14 @@ public class UpgradeScrollViewUI : BaseUI
             PlayerPrefs.SetInt("SoldierHP", 0);
         if (!PlayerPrefs.HasKey("SoldierAttackDelay"))
             PlayerPrefs.SetInt("SoldierAttackDelay", 0);
-
-
-        texts["ArcherTowerDamage"].text = PlayerPrefs.GetInt("ArcherTowerDamage").ToString();
-        texts["ArcherTowerAttackDelay"].text = PlayerPrefs.GetInt("ArcherTowerAttackDelay").ToString();
-        texts["ArcherTowerRange"].text = PlayerPrefs.GetInt("ArcherTowerRange").ToString();
-        texts["CanonTowerDamage"].text = PlayerPrefs.GetInt("CanonTowerDamage").ToString();
-        texts["CanonTowerAttackDelay"].text = PlayerPrefs.GetInt("CanonTowerAttackDelay").ToString();
-        texts["CanonTowerRange"].text = PlayerPrefs.GetInt("CanonTowerRange").ToString();
-        texts["MageTowerDamage"].text = PlayerPrefs.GetInt("MageTowerDamage").ToString();
-        texts["MageTowerAttackDelay"].text = PlayerPrefs.GetInt("MageTowerAttackDelay").ToString();
-        texts["MageTowerRange"].text = PlayerPrefs.GetInt("MageTowerRange").ToString();
-        texts["SoldierDamage"].text = PlayerPrefs.GetInt("SoldierDamage").ToString();
-        texts["SoldierHP"].text = PlayerPrefs.GetInt("SoldierHP").ToString();
-        texts["SoldierAttackDelay"].text = PlayerPrefs.GetInt("SoldierAttackDelay").ToString();
+        if (PlayerPrefs.HasKey("Stage1Score"))
+            stagescore1 = PlayerPrefs.GetInt("Stage1Score");
+        else 
+            stagescore1 = 0;
+        if (PlayerPrefs.HasKey("Stage2Score"))
+            stagescore2 = PlayerPrefs.GetInt("Stage2Score");
+        else 
+            stagescore2 = 0;
     }
 
     private void Update()
@@ -55,7 +57,25 @@ public class UpgradeScrollViewUI : BaseUI
             PlayerPrefs.GetInt("CanonTowerDamage") + PlayerPrefs.GetInt("CanonTowerAttackDelay") + PlayerPrefs.GetInt("CanonTowerRange") +
             PlayerPrefs.GetInt("MageTowerDamage") + PlayerPrefs.GetInt("MageTowerAttackDelay") + PlayerPrefs.GetInt("MageTowerRange") +
             PlayerPrefs.GetInt("SoldierDamage") + PlayerPrefs.GetInt("SoldierHP") + PlayerPrefs.GetInt("SoldierAttackDelay");
+        stagesPoint = stagescore1 + stagescore2;
+        remindePoint = stagesPoint - usedPoint;
+        texts["TotalCount"].text = stagesPoint.ToString();
+        texts["UpgradeCount"].text = remindePoint.ToString();
     }
 
-
+    public void ResetUpgrade()
+    {
+        PlayerPrefs.SetInt("ArcherTowerDamage", 0);
+        PlayerPrefs.SetInt("ArcherTowerAttackDelay", 0);
+        PlayerPrefs.SetInt("ArcherTowerRange", 0);
+        PlayerPrefs.SetInt("CanonTowerDamage", 0);
+        PlayerPrefs.SetInt("CanonTowerAttackDelay", 0);
+        PlayerPrefs.SetInt("CanonTowerRange", 0);
+        PlayerPrefs.SetInt("MageTowerDamage", 0);
+        PlayerPrefs.SetInt("MageTowerAttackDelay", 0);
+        PlayerPrefs.SetInt("MageTowerRange", 0);
+        PlayerPrefs.SetInt("SoldierDamage", 0);
+        PlayerPrefs.SetInt("SoldierHP", 0);
+        PlayerPrefs.SetInt("SoldierAttackDelay", 0);
+    }
 }

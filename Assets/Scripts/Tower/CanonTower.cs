@@ -32,7 +32,7 @@ public class CanonTower : Tower
             if (enemyList.Count > 0)
             {
                 Attack(enemyList[0]);
-                yield return new WaitForSeconds(data.towers[element].delay);
+                yield return new WaitForSeconds(data.towers[element].delay - (PlayerPrefs.GetInt("CanonTowerAttackDelay") * 0.1f));
             }
             else
             {
@@ -45,6 +45,6 @@ public class CanonTower : Tower
     {
         CanonBall canon = GameManager.Pool.Get<CanonBall>(GameManager.Resource.Load<CanonBall>(canonBallName), canonPoint.position, canonPoint.rotation);
         canon.SetTarget(enemy);
-        canon.SetDamage(data.towers[element].damage);
+        canon.SetDamage(data.towers[element].damage + PlayerPrefs.GetInt("CanonTowerDamage"));
     }
 }

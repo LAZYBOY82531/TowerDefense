@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    protected TowerData data;
+    public TowerData data;
     public float range;
     public int element;
     protected List<EnemyController> enemyList;

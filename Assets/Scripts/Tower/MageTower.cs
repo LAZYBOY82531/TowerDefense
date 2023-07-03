@@ -38,7 +38,7 @@ public class MageTower : Tower
             {
                 GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Tower/Shoot"), magicPoint.position, magicPoint.rotation);
                 Attack(enemyList[0]);
-                yield return new WaitForSeconds(data.towers[element].delay);
+                yield return new WaitForSeconds(data.towers[element].delay - (PlayerPrefs.GetInt("MageTowerAttackDelay") * 0.1f));
                 enemys.Clear();
             }
             else
@@ -104,7 +104,7 @@ public class MageTower : Tower
         {
             foreach(EnemyController hitEnemy in enemys)
             {
-                hitEnemy?.TakeHit(data.towers[element].damage);
+                hitEnemy?.TakeHit(data.towers[element].damage + PlayerPrefs.GetInt("ArcherTowerDamage"));
                 GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Tower/Thunder"), hitEnemy.transform.position, hitEnemy.transform.rotation);
             }
         }
