@@ -35,7 +35,7 @@ public class BossPattern : MonoBehaviour
                 if (!enemyController.isTarget)
                 {
                     anim.SetTrigger("Howl");
-                    Time.timeScale = 0.5f;
+
                     enemyController.isTarget = true;
                     yield return new WaitForSeconds(3f);
                     enemyController.isTarget = false;
@@ -54,7 +54,6 @@ public class BossPattern : MonoBehaviour
         {
 
             float time2 = 0;
-            time2 += Time.unscaledDeltaTime;
             if (time2 > 15f)
             {
 
