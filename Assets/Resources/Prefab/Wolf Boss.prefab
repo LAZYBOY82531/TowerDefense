@@ -54735,10 +54735,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  speed: 0
   wayPoints: []
   wayPointIndex: 0
   IsStart: 0
   attackRange: 0
+  ec: {fileID: 0}
 --- !u!114 &-6812654092852240361
 MonoBehaviour:
   m_ObjectHideFlags: 0
