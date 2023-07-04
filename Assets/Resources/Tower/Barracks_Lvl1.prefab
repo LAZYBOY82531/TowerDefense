@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 1504077100336613392}
   - component: {fileID: 1504077100336613393}
   - component: {fileID: 1504077100336613394}
-  m_Layer: 0
+  - component: {fileID: -5117413553631246169}
+  m_Layer: 12
   m_Name: Barracks_Lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18656be0c9981340bad8b4e653c6f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   range: 0
   element: 1
   unitHealth: 20
@@ -149,6 +151,20 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 2.832, z: -0.28800002}
   m_TimeToStationary: 0.5
+--- !u!136 &-5117413553631246169
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489715009138233535}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 3.520825
+  m_Height: 5.664141
+  m_Direction: 1
+  m_Center: {x: 0.00006580353, y: 2.831587, z: -0.28841472}
 --- !u!1 &1490207567958892473
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +176,7 @@ GameObject:
   - component: {fileID: 1488070621980070021}
   - component: {fileID: 1504164623201243597}
   - component: {fileID: 1512350498534184713}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TB_Barracks_Lvl1_DoorB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +259,7 @@ GameObject:
   - component: {fileID: 1493223593912554159}
   - component: {fileID: 1503951495118718437}
   - component: {fileID: 1512053584128123285}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TB_Barracks_Lvl1_DoorA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6787437753546616415}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SponPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,13 +369,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1488103471651520185}
     m_Modifications:
+    - target: {fileID: 1181759158, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1181759161, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 364791824008886621, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 772300245026979946, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632362245056220887, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772405044637064797, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892487566699209375, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3572766029042942354, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4877872606232929643, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
       propertyPath: m_Name
       value: SwordSoldier
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877872606232929643, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4877872606232929643, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
       propertyPath: m_IsActive
@@ -413,6 +461,34 @@ PrefabInstance:
       propertyPath: barrack
       value: 
       objectReference: {fileID: 1504077100336613393}
+    - target: {fileID: 5553793338853827067, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990827141467603136, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032099846225336883, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7652978748648045153, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653047813229895383, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653199514948436779, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653402616800957313, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
 --- !u!1 &2125837452520740241 stripped
@@ -432,13 +508,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1488103471651520185}
     m_Modifications:
+    - target: {fileID: 1181759158, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1181759161, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 364791824008886621, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 772300245026979946, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632362245056220887, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772405044637064797, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892487566699209375, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3572766029042942354, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4877872606232929643, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
       propertyPath: m_Name
       value: SwordSoldier (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877872606232929643, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4877872606232929643, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
       propertyPath: m_IsActive
@@ -492,6 +600,34 @@ PrefabInstance:
       propertyPath: barrack
       value: 
       objectReference: {fileID: 1504077100336613393}
+    - target: {fileID: 5553793338853827067, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990827141467603136, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032099846225336883, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7652978748648045153, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653047813229895383, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653199514948436779, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653402616800957313, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
 --- !u!1 &2125837452909428073 stripped
@@ -511,13 +647,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1488103471651520185}
     m_Modifications:
+    - target: {fileID: 1181759158, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1181759161, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 364791824008886621, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 772300245026979946, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632362245056220887, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772405044637064797, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2892487566699209375, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3572766029042942354, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4877872606232929643, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
       propertyPath: m_Name
       value: SwordSoldier (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4877872606232929643, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4877872606232929643, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
       propertyPath: m_IsActive
@@ -571,6 +739,34 @@ PrefabInstance:
       propertyPath: barrack
       value: 
       objectReference: {fileID: 1504077100336613393}
+    - target: {fileID: 5553793338853827067, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6990827141467603136, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032099846225336883, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7652978748648045153, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653047813229895383, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653199514948436779, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7653402616800957313, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69204ef9a37795f4299da764df9f420e, type: 3}
 --- !u!1 &2892777764156685307 stripped

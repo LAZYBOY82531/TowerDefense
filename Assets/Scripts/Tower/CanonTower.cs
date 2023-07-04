@@ -6,6 +6,7 @@ public class CanonTower : Tower
 {
     [SerializeField] Transform canonPoint;
     [SerializeField] string canonBallName;
+    private float attackdelay;
 
     protected override void Awake()
     {
@@ -13,6 +14,7 @@ public class CanonTower : Tower
 
         data = GameManager.Resource.Load<TowerData>("Data/CanonTowerData");
         range = data.towers[element].range;
+        attackdelay = data.towers[element].delay - (PlayerPrefs.GetInt("CanonTowerAttackDelay") * 0.1f);
     }
 
     private void OnEnable()
@@ -32,7 +34,7 @@ public class CanonTower : Tower
             if (enemyList.Count > 0)
             {
                 Attack(enemyList[0]);
-                yield return new WaitForSeconds(data.towers[element].delay - (PlayerPrefs.GetInt("CanonTowerAttackDelay") * 0.1f));
+                yield return new WaitForSeconds(attackdelay);
             }
             else
             {
@@ -46,5 +48,9 @@ public class CanonTower : Tower
         CanonBall canon = GameManager.Pool.Get<CanonBall>(GameManager.Resource.Load<CanonBall>(canonBallName), canonPoint.position, canonPoint.rotation);
         canon.SetTarget(enemy);
         canon.SetDamage(data.towers[element].damage + PlayerPrefs.GetInt("CanonTowerDamage"));
+    }
+    public override void Debuff()
+    {
+        base.Debuff();
     }
 }

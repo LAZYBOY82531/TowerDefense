@@ -19,10 +19,10 @@ TagManager:
   - Enemy
   - Unit
   - Ground
-  - 
-  - 
-  - 
-  - 
+  - ArcherTower
+  - CanonTower
+  - MageTower
+  - Barrack
   - 
   - 
   - 

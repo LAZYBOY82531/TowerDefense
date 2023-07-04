@@ -33,6 +33,9 @@ public class UnitController : MonoBehaviour
     private EnemyController targetenemyController;
     public int HP { get { return hp; } private set { hp = value; OnChangedHP?.Invoke(hp); } }
     public UnityEvent<int> OnChangedHP;
+    private GameObject Auror;
+    float timetime = 0;
+    bool ispool;
 
 
     private void Awake()
@@ -244,6 +247,37 @@ public class UnitController : MonoBehaviour
             gameObject.SetActive(false);
             barrack.ResponSoldier(gameObject);
             yield break;
+        }
+    }
+
+    public virtual void Debuff()
+    {
+        Auror = GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Prefab/Auror"), gameObject.transform.position, gameObject.transform.rotation);
+        attackDelay *= 2;
+        ispool = false;
+        StartCoroutine(DebuffRoutine());
+    }
+
+    IEnumerator DebuffRoutine()
+    {
+        while (true)
+        {
+            timetime += Time.deltaTime;
+            if (timetime > 1f)
+            {
+                if (!ispool)
+                {
+                    GameManager.Pool.Release(Auror);
+                    ispool = true;
+                }
+            }
+            if (timetime > 15f)
+            {
+                timetime = 0;
+                attackDelay /= 2;
+                yield break;
+            }
+            yield return null;
         }
     }
 }

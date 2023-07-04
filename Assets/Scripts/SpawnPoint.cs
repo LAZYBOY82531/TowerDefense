@@ -14,7 +14,11 @@ public class SpawnPoint : MonoBehaviour
     [SerializeField] int WaveEnemyCount = 30;
     [SerializeField] int enemyCount = 30;
     [SerializeField] UnityEvent endWave;
+    [SerializeField] GameObject guide1;
+    [SerializeField] GameObject guide2;
+    [SerializeField] GameObject guide3;
     private IEnumerator WaveStart;
+    bool isGuide;
 
 
     private void Awake()
@@ -28,6 +32,7 @@ public class SpawnPoint : MonoBehaviour
 
         CreateEnemy(enemyCount);
     }
+
     private void Start()
     {
         WaveStart = StartWave();
@@ -78,6 +83,22 @@ public class SpawnPoint : MonoBehaviour
 
     IEnumerator StartWave()
     {
+        if (!isGuide)
+        {
+            guide1.transform.position = Waypoint[0].position;
+            guide2.transform.position = Waypoint[0].position;
+            guide3.transform.position = Waypoint[0].position;
+            WayGuide wayGuide1 = guide1.gameObject.GetComponent<WayGuide>();
+            WayGuide wayGuide2 = guide2.gameObject.GetComponent<WayGuide>();
+            WayGuide wayGuide3 = guide3.gameObject.GetComponent<WayGuide>();
+            wayGuide1.GetWayPoints(Waypoint);
+            yield return new WaitForSeconds(3);
+            wayGuide2.GetWayPoints(Waypoint);
+            yield return new WaitForSeconds(3);
+            wayGuide3.GetWayPoints(Waypoint);
+            yield return new WaitForSeconds(5);
+            isGuide = true;
+        }
         isendWave = false;
         float tTime = 0;
         int index = 0;

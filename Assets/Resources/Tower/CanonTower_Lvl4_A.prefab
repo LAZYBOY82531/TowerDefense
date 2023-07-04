@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 637169502050305771}
   - component: {fileID: 637169502050305775}
   - component: {fileID: 6855968895331261265}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CanonTower_Lvl4_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c6cef4f0edd1049b7cc1e5932f1530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   range: 0
   element: 7
   canonPoint: {fileID: 637169501324742603}
@@ -117,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e29947664ee54e4c948ea6349216477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   range: 0
   element: 7
   normal: {r: 1, g: 1, b: 1, a: 0}
@@ -146,7 +148,7 @@ GameObject:
   - component: {fileID: 632399733120756981}
   - component: {fileID: 622097780036417415}
   - component: {fileID: 613980357401481795}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TB_CanonTower_Lvl4_A_Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 637169501324742603}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CanonPoint
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}

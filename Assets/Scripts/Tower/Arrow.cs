@@ -24,14 +24,14 @@ public class Arrow : MonoBehaviour
     {
         while (true)
         {
-            if (enemy != null)
+            if (enemy.enabled == true)
                 targetPoint = enemy.transform.position;
             transform.LookAt(targetPoint);
             transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
 
             if (Vector3.Distance(targetPoint, transform.position) < 0.1f)
             {
-                if(enemy != null)
+                if(enemy.enabled == true)
                     Attack(enemy);
                 GameManager.Pool.Release(this);
                 yield break;

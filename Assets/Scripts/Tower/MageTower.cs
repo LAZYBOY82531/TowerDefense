@@ -109,4 +109,8 @@ public class MageTower : Tower
             }
         }
     }
+    public override void Debuff()
+    {
+        base.Debuff();
+    }
 }

@@ -15,6 +15,7 @@ public class ArcherTower : Tower
 
         data = GameManager.Resource.Load<TowerData>("Data/ArcherTowerData");
         range = data.towers[element].range;
+        attackdelay = data.towers[element].delay - (PlayerPrefs.GetInt("ArcherTowerAttackDelay") * 0.1f);
     }
 
     private void OnEnable()
@@ -35,7 +36,7 @@ public class ArcherTower : Tower
             if (enemyList.Count > 0)
             {
                 Attack(enemyList[0]);
-                yield return new WaitForSeconds(data.towers[element].delay - (PlayerPrefs.GetInt("ArcherTowerAttackDelay") * 0.1f));
+                yield return new WaitForSeconds(attackdelay);
             }
             else
             {
@@ -62,5 +63,10 @@ public class ArcherTower : Tower
 
             yield return null;  
         }
+    }
+
+    public override void Debuff()
+    {
+        base.Debuff();
     }
 }

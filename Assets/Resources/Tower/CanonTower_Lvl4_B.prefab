@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1277043978604095984}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CanonPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1277043979053060720}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CanonPoint
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1277043979082915403}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CanonPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 1272351174672156231}
   - component: {fileID: 1279228333940898155}
   - component: {fileID: 1290599275462122509}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TB_CanonTower_Lvl4_B_Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -471,7 +471,7 @@ GameObject:
   - component: {fileID: 1277043978869586225}
   - component: {fileID: 1277043978869586229}
   - component: {fileID: 5795251608729333583}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CanonTower_Lvl4_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,6 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c6cef4f0edd1049b7cc1e5932f1530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   range: 0
   element: 9
   canonPoint: {fileID: 1277043978604095984}
@@ -578,6 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c6cef4f0edd1049b7cc1e5932f1530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   range: 0
   element: 9
   canonPoint: {fileID: 1277043979082915403}
@@ -594,6 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c6cef4f0edd1049b7cc1e5932f1530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   range: 0
   element: 9
   canonPoint: {fileID: 1277043979053060720}
@@ -610,6 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e29947664ee54e4c948ea6349216477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   range: 0
   element: 9
   normal: {r: 1, g: 1, b: 1, a: 0}

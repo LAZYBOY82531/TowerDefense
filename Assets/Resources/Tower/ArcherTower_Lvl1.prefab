@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 843306878}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArrowPoint
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: -7425683563072944661}
   - component: {fileID: 3149769597274005626}
   - component: {fileID: 1612571874}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArcherTower_Lvl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75478b8611b46a947a34d231e8d1cebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   range: 0
   element: 1
   archer: {fileID: 2576840276117652515}
@@ -240,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb01b8d51f650c9409f3835ce76ceade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   range: 0
   element: 1
   normal: {r: 1, g: 1, b: 1, a: 0}
@@ -267,7 +269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2576840276117652515}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Arther
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,9 +300,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2576840276117652515}
     m_Modifications:
+    - target: {fileID: 1049600279741202, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170656015272962, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1384440416894446, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
       propertyPath: m_Name
       value: TB_Soldier_Archer_Violet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384440416894446, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922796362754612, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4297377120753592, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
       propertyPath: m_RootOrder

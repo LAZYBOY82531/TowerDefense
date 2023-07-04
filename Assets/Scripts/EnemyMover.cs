@@ -14,10 +14,12 @@ public class EnemyMover : MonoBehaviour
     public bool IsStart = false;
     public float attackRange;
     Coroutine moveRoutine;
+    public EnemyController ec;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        ec = GetComponent<EnemyController>();
     }
 
     private void Start()
@@ -56,6 +58,7 @@ public class EnemyMover : MonoBehaviour
                 }
                 else
                 {
+                    ec.OnDied?.Invoke();
                     this.gameObject.SetActive(false);
                     ResetPosition();
                     fullHP?.Invoke();

@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6885104426890311487}
   - component: {fileID: 3467683613970584940}
   - component: {fileID: 2699171499052085607}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArcherTower_Lvl4_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75478b8611b46a947a34d231e8d1cebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   range: 0
   element: 9
   archer: {fileID: 4704941322468147187}
@@ -212,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75478b8611b46a947a34d231e8d1cebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   range: 0
   element: 9
   archer: {fileID: 3814582829829124089}
@@ -242,6 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bc09a101d455f4ab8ed02d65b07b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   range: 0
   element: 9
   normal: {r: 1, g: 1, b: 1, a: 0}
@@ -255,7 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4704941322468147187}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Arther
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3814582829829124089}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Arther (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3384763206321606840}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArrowPoint
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -352,7 +355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1031941682456968298}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArrowPoint
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -474,9 +477,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3814582829829124089}
     m_Modifications:
+    - target: {fileID: 1049600279741202, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170656015272962, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1384440416894446, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
       propertyPath: m_Name
       value: TB_Soldier_Archer_Violet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384440416894446, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922796362754612, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4297377120753592, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
       propertyPath: m_RootOrder
@@ -536,9 +555,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4704941322468147187}
     m_Modifications:
+    - target: {fileID: 1049600279741202, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170656015272962, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1384440416894446, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
       propertyPath: m_Name
       value: TB_Soldier_Archer_Violet
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384440416894446, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922796362754612, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4297377120753592, guid: bbf3c82f931e9504aa91072e655059c2, type: 3}
       propertyPath: m_RootOrder

@@ -20,6 +20,8 @@ public class Barrack : Tower
     private List<GameObject> groundLists;
     private Vector3 idlePosition;
     private float shortDis;
+    float timetime = 0;
+    private GameObject Auror;
 
     protected override void Awake()
     {
@@ -102,5 +104,28 @@ public class Barrack : Tower
         yield return new WaitForSeconds(unitResponDelay);
         soldier.SetActive(true);
         soldiercon.MoveTo(soldiercon.idlePoint);
+    }
+
+    public override void Debuff()
+    {
+        Auror = GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Prefab/Auror"), gameObject.transform.position, gameObject.transform.rotation);
+        StartCoroutine(DebuffResponRoutine());
+    }
+
+    IEnumerator DebuffResponRoutine()
+    {
+        while (true)
+        {
+            timetime += Time.deltaTime;
+            unitResponDelay *= 2;
+            if (timetime > 15f)
+            {
+                GameManager.Pool.Release(Auror);
+                timetime = 0;
+                unitResponDelay /= 2;
+                yield break;
+            }
+            yield return null;
+        }
     }
 }
