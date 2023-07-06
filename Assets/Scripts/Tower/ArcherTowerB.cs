@@ -4,10 +4,12 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.AssemblyQualifiedNameParser;
 using UnityEngine;
 
-public class ArcherTower : Tower
+public class ArcherTowerB : Tower
 {
     [SerializeField] Transform archer;
     [SerializeField] Transform arrowPoint;
+    [SerializeField] Transform archer2;
+    [SerializeField] Transform arrowPoint2;
     [SerializeField] AudioSource arrowsound;
 
     protected override void Awake()
@@ -32,24 +34,44 @@ public class ArcherTower : Tower
 
     IEnumerator AttackRoutine()
     {
+        float time1 = 10;
+        float time2 = 10;
         while (true)
         {
             if (enemyList.Count > 0)
             {
-                Attack(enemyList[0]);
-                yield return new WaitForSeconds(attackdelay);
+                time1 += Time.deltaTime;
+                if (time1 > attackdelay)
+                {
+                    Attack1(enemyList[0]);
+                    time1 = 0;
+                }
             }
-            else
+            if (enemyList.Count > 1)
             {
-                yield return null;
+                time2 += Time.deltaTime;
+                if (time2 > attackdelay)
+                {
+                    Attack2(enemyList[1]);
+                    time2 = 0;
+                }
             }
+            yield return null;
         }
     }
 
-    public void Attack(EnemyController enemy)
+    public void Attack1(EnemyController enemy)
     {
         arrowsound.Play();
         Arrow arrow = GameManager.Pool.Get<Arrow>(GameManager.Resource.Load<Arrow>("Tower/Arrow"), arrowPoint.position, arrowPoint.rotation);
+        arrow.SetTarget(enemy);
+        arrow.SetDamage(data.towers[element].damage + PlayerPrefs.GetInt("ArcherTowerDamage"));
+    }
+
+    public void Attack2(EnemyController enemy)
+    {
+        arrowsound.Play();
+        Arrow arrow = GameManager.Pool.Get<Arrow>(GameManager.Resource.Load<Arrow>("Tower/Arrow"), arrowPoint2.position, arrowPoint2.rotation);
         arrow.SetTarget(enemy);
         arrow.SetDamage(data.towers[element].damage + PlayerPrefs.GetInt("ArcherTowerDamage"));
     }
@@ -61,6 +83,10 @@ public class ArcherTower : Tower
             if(enemyList.Count > 0)
             {
                 archer.LookAt(enemyList[0].transform.position);
+                if(enemyList.Count > 1)
+                {
+                    archer2.LookAt(enemyList[1].transform.position);
+                }
             }
 
             yield return null;  

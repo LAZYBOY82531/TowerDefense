@@ -16,11 +16,13 @@ public class DataManager : MonoBehaviour
     {
         if(Coin - cost >= 0)
         {
+            GameManager.Sound.Play("Sound/UseCoin", SoundManager.Sound.Effect, 1f);
             Coin -= cost;
             return true;
         }
         else
         {
+            GameManager.Sound.Play("Sound/DontDoThat", SoundManager.Sound.Effect, 1f);
             return false;
         }
     }
@@ -30,6 +32,7 @@ public class DataManager : MonoBehaviour
         heart--;
         if(heart <= 0)
         {
+            GameManager.Sound.Play("Sound/LoseHP", SoundManager.Sound.Effect, 1f);
             GameManager.Scene.gameOverUI.gameObject.SetActive(true);
         }
     }

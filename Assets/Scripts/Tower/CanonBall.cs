@@ -68,6 +68,7 @@ public class CanonBall : MonoBehaviour
         yield return null;
 
         Explosion();
+        GameManager.Sound.Play("Sound/ExplosionCanon", gameObject.transform);
         GameManager.Pool.Release(this);
     }
 }

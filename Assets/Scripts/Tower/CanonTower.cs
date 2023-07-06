@@ -6,7 +6,6 @@ public class CanonTower : Tower
 {
     [SerializeField] Transform canonPoint;
     [SerializeField] string canonBallName;
-    private float attackdelay;
 
     protected override void Awake()
     {

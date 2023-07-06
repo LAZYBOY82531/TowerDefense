@@ -16,17 +16,19 @@ public class SettingSceneUI : SceneUI
 
         Time.timeScale = 1f;
         buttons["FasterButton"].onClick.AddListener(() => { Faster(); });
-        buttons["VolumeButton"].onClick.AddListener(() => { Debug.Log("Volume"); });
+        buttons["VolumeButton"].onClick.AddListener(() => { GameManager.Sound.Play("Sound/ClickUI"); Debug.Log("Volume"); });
         buttons["SettingButton"].onClick.AddListener(() => { OpenPausePopUpUI(); });
     }
 
     public void OpenPausePopUpUI()
     {
+        GameManager.Sound.Play("Sound/ClickUI");
         GameManager.UI.OpenPopUpUI("UI/SettingPopUpUI");
     }
 
     public void Faster()
     {
+        GameManager.Sound.Play("Sound/ClickUI");
         ColorBlock colorBlock = buttons["FasterButton"].colors;
         if (Time.timeScale == 1f)
         {

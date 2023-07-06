@@ -18,6 +18,7 @@ public class MageTower : Tower
 
         data = GameManager.Resource.Load<TowerData>("Data/MageTowerData");
         range = data.towers[element].range;
+        attackdelay = data.towers[element].delay - (PlayerPrefs.GetInt("MageTowerAttackDelay") * 0.1f);
     }
 
     private void OnEnable()
@@ -38,7 +39,7 @@ public class MageTower : Tower
             {
                 GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Tower/Shoot"), magicPoint.position, magicPoint.rotation);
                 Attack(enemyList[0]);
-                yield return new WaitForSeconds(data.towers[element].delay - (PlayerPrefs.GetInt("MageTowerAttackDelay") * 0.1f));
+                yield return new WaitForSeconds(attackdelay);
                 enemys.Clear();
             }
             else

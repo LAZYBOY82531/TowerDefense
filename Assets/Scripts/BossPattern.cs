@@ -14,6 +14,8 @@ public class BossPattern : MonoBehaviour
     float timetime = 0;
     private GameObject Auror;
     public ArcherTower archertower;
+    bool isDead;
+    bool isAuror;
 
 
     private void Awake()
@@ -21,7 +23,7 @@ public class BossPattern : MonoBehaviour
         anim = GetComponent<Animator>();
         enemyController = GetComponent<EnemyController>();
         enemyMover = GetComponent<EnemyMover>();
-        enemyController.OnDied.AddListener(() => { GameManager.Pool.Release(Auror); });
+        enemyController.OnDied.AddListener(() => { if (isAuror) { GameManager.Pool.Release(Auror); isDead = true; } });
     }
 
     private void Start()
@@ -33,27 +35,34 @@ public class BossPattern : MonoBehaviour
     {
         while (true)
         {
-            timetime += Time.deltaTime;
-            if(timetime > howlingCooltime)
+            if (!isDead)
             {
-                if (!enemyController.isTarget)
+                timetime += Time.deltaTime;
+                if (timetime > howlingCooltime)
                 {
-                    anim.SetTrigger("Howl");
-                    Auror = GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Prefab/Auror"), gameObject.transform.position, gameObject.transform.rotation);
-                    Collider[] colliders = Physics.OverlapSphere(transform.position, 2000, debuffMask);
-                    foreach (Collider collider in colliders)
+                    if (!enemyController.isTarget)
                     {
-                        Tower tower = collider.gameObject.GetComponent<Tower>();
-                        tower?.Debuff();
+                        anim.SetTrigger("Howl");
+                        GameManager.Sound.Play("Sound/WolfHowl", SoundManager.Sound.Effect);
+                        Auror = GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Prefab/Auror"), gameObject.transform.position, gameObject.transform.rotation);
+                        Collider[] colliders = Physics.OverlapSphere(transform.position, 2000, debuffMask);
+                        foreach (Collider collider in colliders)
+                        {
+                            Tower tower = collider.gameObject.GetComponent<Tower>();
+                            tower?.Debuff();
 
-                        UnitController unit = collider.gameObject.GetComponent<UnitController>();
-                        unit?.Debuff();
+                            UnitController unit = collider.gameObject.GetComponent<UnitController>();
+                            unit?.Debuff();
+                        }
+                        enemyController.isTarget = true;
+                        isAuror = true;
+                        yield return new WaitForSeconds(3f);
+                        if (!isDead)
+                            GameManager.Pool.Release(Auror);
+                        enemyController.isTarget = false;
+                        isAuror = false;
+                        timetime = 0;
                     }
-                    enemyController.isTarget = true;
-                    yield return new WaitForSeconds(3f);
-                    GameManager.Pool.Release(Auror);
-                    enemyController.isTarget = false;
-                    timetime = 0;
                 }
             }
             yield return null;

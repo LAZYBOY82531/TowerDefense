@@ -54535,7 +54535,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7490816525499920361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -81.13, y: 0.0000009536743, z: -27.53}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -54644,7 +54644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb4ee6f5ccdc1845a3febc6ff1c1d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 1000
   fullhp: 0
   GiveCoin: 10
   resetPosition:
@@ -54735,7 +54735,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  speed: 0
   wayPoints: []
   wayPointIndex: 0
   IsStart: 0

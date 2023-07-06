@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ArcherTower3Upgrade : Tower, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class ArcherTower3Upgrade : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Color normal;
     [SerializeField] Color onMouse;
+    int element;
 
     private Renderer render;
 
     private void Awake()
     {
         render = GetComponent<Renderer>();
+        element = GetComponent<Tower>().element;
     }
 
     public void OnPointerClick(PointerEventData eventData)

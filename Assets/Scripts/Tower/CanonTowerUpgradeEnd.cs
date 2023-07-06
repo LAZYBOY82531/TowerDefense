@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CanonTowerUpgradeEnd : Tower, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class CanonTowerUpgradeEnd : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Color normal;
     [SerializeField] Color onMouse;
+    private int element;
 
     private Renderer render;
 
     private void Awake()
     {
         render = GetComponent<Renderer>();
+        element = gameObject.GetComponent<Tower>().element;
     }
 
     public void OnPointerClick(PointerEventData eventData)
