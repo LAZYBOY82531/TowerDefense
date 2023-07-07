@@ -30,8 +30,9 @@ public class WinCanvas : MonoBehaviour
 
     IEnumerator EndGame()
     {
+        GameManager.Sound.Play("Sound/WinUI");
         controller.enabled = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         if (GameManager.Data.Heart == mapdata.heart)
         {
             PlayerPrefs.SetInt("Stage" + thisStage + "Score", 3);
@@ -64,6 +65,9 @@ public class WinCanvas : MonoBehaviour
             }
             anim.SetBool("Bronze", true);
         }
+        yield return new WaitForSeconds(1f);
+        GameManager.Sound.Play("Sound/EndMedal");
+        yield break;
     }
 
     public void GoTitle()

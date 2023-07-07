@@ -8,8 +8,8 @@ public class SettingPopUpUI : PopUpUI
     {
         base.Awake();
 
-        buttons["Continue"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
-        buttons["Setting"].onClick.AddListener(() => { GameManager.UI.OpenPopUpUI("UI/ConfigPopUpUI"); });
-        buttons["Exit"].onClick.AddListener(() => { GameManager.Scene.LoadScene("Title"); });
+        buttons["Continue"].onClick.AddListener(() => { GameManager.Sound.Play("Sound/ClickUI", SoundManager.Sound.UIS); GameManager.UI.ClosePopUpUI(); });
+        buttons["Setting"].onClick.AddListener(() => { GameManager.Sound.Play("Sound/ClickUI", SoundManager.Sound.UIS); GameManager.UI.OpenPopUpUI("UI/ConfigPopUpUI"); });
+        buttons["Exit"].onClick.AddListener(() => { GameManager.Sound.Play("Sound/ClickUI", SoundManager.Sound.UIS); GameManager.Scene.LoadScene("Title"); });
     }
 }

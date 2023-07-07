@@ -42,7 +42,7 @@ public class Tower : MonoBehaviour
             if (timetime > 15f)
             {
                 timetime = 0;
-                attackdelay /= 2;
+                attackdelay *= 0.5f;
                 GameManager.Pool.Release(Auror);
                 yield break;
             }

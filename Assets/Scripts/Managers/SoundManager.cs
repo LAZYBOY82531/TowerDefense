@@ -13,22 +13,34 @@ public class SoundManager : MonoBehaviour
 {
     AudioSource audioSourceEffect;
     AudioSource audioSourceBGM;
+    AudioSource audioSourceUIS;
+    AudioMixer audioMixer;
     public enum Sound { Bgm, Effect, UIS }
 
     private void Awake()
     {
+        audioMixer = GameManager.Resource.Load<AudioMixer>("Sound/GameAudio");
         audioSourceEffect = GameManager.Resource.Instantiate<AudioSource>("Sound/AudioSource");
         audioSourceBGM = GameManager.Resource.Instantiate<AudioSource>("Sound/AudioSource");
+        audioSourceUIS = GameManager.Resource.Instantiate<AudioSource>("Sound/AudioSource");
         audioSourceBGM.name = "AudioSourceBGM";
         audioSourceEffect.name = "AudioSourceEffect";
-        audioSourceBGM.outputAudioMixerGroup = GameManager.Resource.Load<AudioMixerGroup>("Sound/BGM");
-        audioSourceEffect.outputAudioMixerGroup = GameManager.Resource.Load<AudioMixerGroup>("Sound/SFX(GameAudio)");
+        audioSourceUIS.name = "AudioSourceUIS";
+        AudioMixerGroup[] mixerGroupSFX = GameManager.Resource.Load<AudioMixer>("Sound/GameAudio").FindMatchingGroups("SFX");
+        AudioMixerGroup[] mixerGroupBGM = GameManager.Resource.Load<AudioMixer>("Sound/GameAudio").FindMatchingGroups("BGM");
+        AudioMixerGroup[] mixerGroupUIS = GameManager.Resource.Load<AudioMixer>("Sound/GameAudio").FindMatchingGroups("UISound");
+        audioSourceBGM.outputAudioMixerGroup = mixerGroupBGM[0];
+        audioSourceEffect.outputAudioMixerGroup = mixerGroupSFX[0];
+        audioSourceUIS.outputAudioMixerGroup = mixerGroupUIS[0];
     }
 
     public void Play(AudioClip audioClip, Sound type = Sound.Effect, float pitch = 1.0f)
     {
         if (audioClip == null)
+        {
+            Debug.Log("no sound");
             return;
+        }
 
         if (type == Sound.Bgm)
         {
@@ -58,7 +70,9 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-
+            audioSourceUIS.transform.parent = Camera.main.transform;
+            audioSourceUIS.pitch = pitch;
+            audioSourceUIS.PlayOneShot(audioClip);
         }
     }
 

@@ -16,7 +16,7 @@ public class SettingSceneUI : SceneUI
 
         Time.timeScale = 1f;
         buttons["FasterButton"].onClick.AddListener(() => { Faster(); });
-        buttons["VolumeButton"].onClick.AddListener(() => { GameManager.Sound.Play("Sound/ClickUI"); Debug.Log("Volume"); });
+        buttons["VolumeButton"].onClick.AddListener(() => { GameManager.Sound.Play("Sound/ClickUI", SoundManager.Sound.UIS); Time.timeScale = 0f;  GameManager.UI.OpenPopUpUI("UI/AudioMixerUI"); });
         buttons["SettingButton"].onClick.AddListener(() => { OpenPausePopUpUI(); });
     }
 

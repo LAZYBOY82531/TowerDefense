@@ -274,7 +274,7 @@ public class UnitController : MonoBehaviour
             if (timetime > 15f)
             {
                 timetime = 0;
-                attackDelay /= 2;
+                attackDelay *= 0.5f;
                 yield break;
             }
             yield return null;

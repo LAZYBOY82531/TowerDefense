@@ -2,15 +2,22 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class DataManager : MonoBehaviour
 {
     private int heart = 2000;
     private int coin = 2000;
     public int nowWave = 1;
+    public AudioMixer gameAudio;
     public int Heart { get { return heart; } set { heart = value; } }
     public int Coin { get { return coin; } set { coin = value; } }
     public int NowWave { get { return nowWave; } set { nowWave = value; } }
+
+    private void Awake()
+    {
+        gameAudio = GameManager.Resource.Load<AudioMixer>("Sound/gameAudio");
+    }
 
     public bool UseCoin(int cost)
     {

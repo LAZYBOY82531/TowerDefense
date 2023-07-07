@@ -76,7 +76,7 @@ MonoBehaviour:
     buildTime: 0
     buildCost: 500
     sellCost: 10
-  - tower: {fileID: 1277043978869586227, guid: fcfd25ac8cbce7649a884318dd9eb36a, type: 3}
+  - tower: {fileID: 7687670309734939720, guid: fcfd25ac8cbce7649a884318dd9eb36a, type: 3}
     damage: 5
     delay: 3
     range: 70
