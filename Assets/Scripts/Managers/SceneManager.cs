@@ -44,31 +44,35 @@ public class SceneManager : MonoBehaviour
 
     IEnumerator LoadingRoutine(string sceneName)
     {
+
+        loadingUI.SetProgress(0f);
         loadingUI.FadeOut();
         yield return new WaitForSeconds(1f);
         Time.timeScale = 0f;
 
         AsyncOperation oper = UnitySceneManager.LoadSceneAsync(sceneName);
-
-        /*while(!oper.isDone)
-        {
-            loadingUI.SetProgress(oper.progress);
-            yield return null;
-        }*/
         while (!oper.isDone)
         {
-            loadingUI.SetProgress(Mathf.Lerp(0f, 0.5f, oper.progress));
+            loadingUI.SetProgress(Mathf.Lerp(0.0f, 0.5f, oper.progress));
             yield return null;
         }
-        CurScene.LoadAsync();
-        while (CurScene.progress < 1f)
+
+        if (CurScene != null)
         {
-            loadingUI.SetProgress(Mathf.Lerp(0.5f, 1f, CurScene.progress));
-            yield return null;
+            CurScene.LoadAsync();
+            while (CurScene.progress < 1f)
+            {
+                loadingUI.SetProgress(Mathf.Lerp(0.5f, 1f, CurScene.progress));
+                yield return null;
+            }
         }
-        CurScene.LoadAsync();
-        Time.timeScale = 1f;
+
+        loadingUI.SetProgress(1f);
         loadingUI.FadeIn();
-        yield return new WaitForSeconds(1f);
+        Time.timeScale = 1f;
+        yield return new WaitForSeconds(0.5f);
+        GameManager.UI.StartScene();
+        GameManager.Pool.StartScene();
+        GameManager.Sound.StartScene();
     }
 }

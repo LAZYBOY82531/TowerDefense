@@ -17,6 +17,7 @@ public class GameOverUI : MonoBehaviour
 
     public void GoTitle()
     {
+        GameManager.Sound.Play("Sound/ClickUI", SoundManager.Sound.UIS);
         GameManager.Scene.LoadScene("Title");
         GameManager.Data.Heart = 2000;
         gameObject.SetActive(false);
@@ -24,6 +25,7 @@ public class GameOverUI : MonoBehaviour
 
     public void Retry()
     {
+        GameManager.Sound.Play("Sound/ClickUI", SoundManager.Sound.UIS);
         GameManager.Scene.LoadScene(SceneManager.GetActiveScene());
         GameManager.Data.Heart = 2000;
         gameObject.SetActive(false);

@@ -17,6 +17,14 @@ public class DataManager : MonoBehaviour
     private void Awake()
     {
         gameAudio = GameManager.Resource.Load<AudioMixer>("Sound/gameAudio");
+        if (!PlayerPrefs.HasKey("MasterVolume"))
+            PlayerPrefs.SetFloat("MasterVolume", 0f);
+        if (!PlayerPrefs.HasKey("BGMVolume"))
+            PlayerPrefs.SetFloat("BGMVolume", 0f);
+        if (!PlayerPrefs.HasKey("SFXVolume"))
+            PlayerPrefs.SetFloat("SFXVolume", 0f);
+        if (!PlayerPrefs.HasKey("UISoundVolume"))
+            PlayerPrefs.SetFloat("UISoundVolume", 0f);
     }
 
     public bool UseCoin(int cost)

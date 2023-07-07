@@ -13,7 +13,7 @@ public class UpgradeScrollViewUI : PopUpUI
     protected override void Awake()
     {
         base.Awake();
-        buttons["Close"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI(); });
+        buttons["Close"].onClick.AddListener(() => { GameManager.Sound.Play("Sound/ClickUI", SoundManager.Sound.UIS); GameManager.UI.ClosePopUpUI(); });
     }
     private void Start()
     {
@@ -65,6 +65,7 @@ public class UpgradeScrollViewUI : PopUpUI
 
     public void ResetUpgrade()
     {
+        GameManager.Sound.Play("Sound/ClickUI", SoundManager.Sound.UIS);
         PlayerPrefs.SetInt("ArcherTowerDamage", 0);
         PlayerPrefs.SetInt("ArcherTowerAttackDelay", 0);
         PlayerPrefs.SetInt("ArcherTowerRange", 0);

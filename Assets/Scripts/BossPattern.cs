@@ -44,6 +44,7 @@ public class BossPattern : MonoBehaviour
                     {
                         anim.SetTrigger("Howl");
                         GameManager.Sound.Play("Sound/WolfHowl", SoundManager.Sound.Effect);
+                        isAuror = true;
                         Auror = GameManager.Pool.Get<GameObject>(GameManager.Resource.Load<GameObject>("Prefab/Auror"), gameObject.transform.position, gameObject.transform.rotation);
                         Collider[] colliders = Physics.OverlapSphere(transform.position, 2000, debuffMask);
                         foreach (Collider collider in colliders)
@@ -55,7 +56,6 @@ public class BossPattern : MonoBehaviour
                             unit?.Debuff();
                         }
                         enemyController.isTarget = true;
-                        isAuror = true;
                         yield return new WaitForSeconds(3f);
                         if (!isDead)
                             GameManager.Pool.Release(Auror);

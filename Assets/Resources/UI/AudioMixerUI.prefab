@@ -301,7 +301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99874e330ad59e44bc228e6f67ad46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameAudio: {fileID: 24100000, guid: 6e236e454b6a1ef4191093e729cf8c94, type: 2}
   audioSlider: {fileID: 2949118804802974901}
   mixername: MasterVolume
 --- !u!1 &2949118804827063639
@@ -1259,7 +1258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99874e330ad59e44bc228e6f67ad46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameAudio: {fileID: 24100000, guid: 6e236e454b6a1ef4191093e729cf8c94, type: 2}
   audioSlider: {fileID: 2949118805415068629}
   mixername: UISoundVolume
 --- !u!1 &2949118805566375571
@@ -1664,7 +1662,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99874e330ad59e44bc228e6f67ad46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameAudio: {fileID: 24100000, guid: 6e236e454b6a1ef4191093e729cf8c94, type: 2}
   audioSlider: {fileID: 2949118805697481811}
   mixername: BGMVolume
 --- !u!1 &2949118805699866876
@@ -1796,7 +1793,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99874e330ad59e44bc228e6f67ad46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameAudio: {fileID: 24100000, guid: 6e236e454b6a1ef4191093e729cf8c94, type: 2}
   audioSlider: {fileID: 2949118805699866878}
   mixername: SFXVolume
 --- !u!1 &2949118805749982903

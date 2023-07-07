@@ -6,29 +6,20 @@ public class TitleScene : BaseScene
 {
     public void GoStageSelect()
     {
+        GameManager.Sound.Play("Sound/ClickUI", SoundManager.Sound.UIS);
         GameManager.Scene.LoadScene("StageSelect");
     }
 
     public void Setting()
     {
-        PlayerPrefs.DeleteAll();
+        GameManager.Sound.Play("Sound/ClickUI", SoundManager.Sound.UIS);
+        GameManager.UI.OpenPopUpUI("UI/TitlePopUpUI");
     }
 
     protected override IEnumerator LoadingRoutine()
     {
-        progress = 0f;
-        Debug.Log("·£´ý ¸Ê »ý¼º");
-        yield return new WaitForSecondsRealtime(1f);
-        progress = 0.2f;
-        Debug.Log("·£´ý ¸Ê »ý¼º");
-        yield return new WaitForSecondsRealtime(1f);
-        progress = 0.4f;
-        Debug.Log("ÇÃ·¹ÀÌ¾î ¹èÄ¡");
-        yield return new WaitForSecondsRealtime(1f);
-        progress = 0.7f;
-        Debug.Log("·£´ý ¸Ê »ý¼º");
-
-        yield return new WaitForSecondsRealtime(1f);
-        progress = 1f;
+        progress = 0.0f;
+        yield return null;
+        progress = 1.0f;
     }
 }

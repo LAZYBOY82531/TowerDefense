@@ -14,12 +14,25 @@ public class SoundManager : MonoBehaviour
     AudioSource audioSourceEffect;
     AudioSource audioSourceBGM;
     AudioSource audioSourceUIS;
-    AudioMixer audioMixer;
     public enum Sound { Bgm, Effect, UIS }
-
     private void Awake()
     {
-        audioMixer = GameManager.Resource.Load<AudioMixer>("Sound/GameAudio");
+        audioSourceEffect = GameManager.Resource.Instantiate<AudioSource>("Sound/AudioSource");
+        audioSourceBGM = GameManager.Resource.Instantiate<AudioSource>("Sound/AudioSource");
+        audioSourceUIS = GameManager.Resource.Instantiate<AudioSource>("Sound/AudioSource");
+        audioSourceBGM.name = "AudioSourceBGM";
+        audioSourceEffect.name = "AudioSourceEffect";
+        audioSourceUIS.name = "AudioSourceUIS";
+        AudioMixerGroup[] mixerGroupSFX = GameManager.Resource.Load<AudioMixer>("Sound/GameAudio").FindMatchingGroups("SFX");
+        AudioMixerGroup[] mixerGroupBGM = GameManager.Resource.Load<AudioMixer>("Sound/GameAudio").FindMatchingGroups("BGM");
+        AudioMixerGroup[] mixerGroupUIS = GameManager.Resource.Load<AudioMixer>("Sound/GameAudio").FindMatchingGroups("UISound");
+        audioSourceBGM.outputAudioMixerGroup = mixerGroupBGM[0];
+        audioSourceEffect.outputAudioMixerGroup = mixerGroupSFX[0];
+        audioSourceUIS.outputAudioMixerGroup = mixerGroupUIS[0];
+    }
+
+    public void StartScene()
+    {
         audioSourceEffect = GameManager.Resource.Instantiate<AudioSource>("Sound/AudioSource");
         audioSourceBGM = GameManager.Resource.Instantiate<AudioSource>("Sound/AudioSource");
         audioSourceUIS = GameManager.Resource.Instantiate<AudioSource>("Sound/AudioSource");

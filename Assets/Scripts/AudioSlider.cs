@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -12,6 +13,9 @@ public class AudioSlider : BaseUI
     protected override void Awake()
     {
         base.Awake();
+
+        audioSlider = GetComponent<Slider>();
+        audioSlider.value = PlayerPrefs.GetFloat(mixername);
     }
 
     public void AudioControl()
@@ -27,6 +31,7 @@ public class AudioSlider : BaseUI
     public void OnValueChange(float value)
     {
         int intvalue = (int)Mathf.Round((value + 40) * 2.5f);
+        PlayerPrefs.SetFloat(mixername, value);
         texts["Value"].text = intvalue.ToString();
     }
 }
