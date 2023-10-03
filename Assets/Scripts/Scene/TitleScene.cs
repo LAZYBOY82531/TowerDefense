@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class TitleScene : BaseScene
 {
+    private void Start()
+    {
+        StartCoroutine(BGMRoutine());
+    }
+
+    IEnumerator BGMRoutine()
+    {
+        yield return new WaitForSeconds(1);
+        GameManager.Sound.Play("Sound/TitleBGM", SoundManager.Sound.Bgm);
+    }
+
     public void GoStageSelect()
     {
         GameManager.Sound.Play("Sound/ClickUI", SoundManager.Sound.UIS);

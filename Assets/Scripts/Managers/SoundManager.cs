@@ -60,6 +60,7 @@ public class SoundManager : MonoBehaviour
             if (!audioSourceBGM.isPlaying)
             {
                 audioSourceBGM.transform.parent = Camera.main.transform;
+                audioSourceBGM.transform.position = Camera.main.transform.position;
                 audioSourceBGM.pitch = pitch;
                 audioSourceBGM.clip = audioClip;
                 audioSourceBGM.loop = true;
@@ -78,15 +79,21 @@ public class SoundManager : MonoBehaviour
         else if (type == Sound.Effect)
         {
             audioSourceEffect.transform.parent = Camera.main.transform;
+            audioSourceEffect.transform.position = Camera.main.transform.position;
             audioSourceEffect.pitch = pitch;
             audioSourceEffect.PlayOneShot(audioClip);
         }
         else
         {
             audioSourceUIS.transform.parent = Camera.main.transform;
+            audioSourceUIS.transform.position = Camera.main.transform.position;
             audioSourceUIS.pitch = pitch;
             audioSourceUIS.PlayOneShot(audioClip);
         }
+    }
+    public void StopBGM()
+    {
+        audioSourceBGM.Stop();
     }
 
     public void Play(string path, UnityEngine.Transform transform, Sound type = Sound.Effect, float pitch = 1.0f)
